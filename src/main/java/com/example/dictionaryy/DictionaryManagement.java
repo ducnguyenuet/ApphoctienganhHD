@@ -5,6 +5,7 @@ public class DictionaryManagement {
         Scanner input = new Scanner(System.in);
         System.out.print("Enter the number of words to be included in the dictionary: ");
         int numOfWords = input.nextInt();
+        input.nextLine();
         while (numOfWords > 0) {
             System.out.print("Enter the word to be included in the dictionary: ");
             String word_target = input.nextLine();

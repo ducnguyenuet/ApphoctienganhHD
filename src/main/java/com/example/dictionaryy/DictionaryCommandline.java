@@ -55,7 +55,7 @@ public class DictionaryCommandline {
         }
         for (int i=0;i<n;i++)
         {
-            System.out.println(i+"   | " +dict.getList().get(i).getWord_target()+"  "+dict.getList().get(i).getWord_explain());
+            System.out.println(i+"   | " +dict.getList().get(i).getWord_target()+"         "+dict.getList().get(i).getWord_explain());
         }
     }
 
@@ -63,5 +63,12 @@ public class DictionaryCommandline {
     {
         insertFromCommandline(dict);
         ShowAllWords(dict);
+    }
+
+    public static void main(String[] args) {
+        Dictionary d1 = new Dictionary();
+        DictionaryCommandline dc = new DictionaryCommandline();
+        dc.dictionaryBasic(d1);
+
     }
 }
