@@ -1,5 +1,13 @@
 package com.example.dictionaryy;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.FileNotFoundException;
 public class DictionaryManagement {
     public static void insertFromCommandline(Dictionary dict){
         Scanner input = new Scanner(System.in);
@@ -16,4 +24,58 @@ public class DictionaryManagement {
             numOfWords--;
         }
     }
+
+    public static void insertFromFile(Dictionary dict) {
+        String path = new File("").getAbsolutePath() + "\\src\\main\\java\\com\\example\\dictionaryy\\dictionaries.txt";
+
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path))) {
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] parts = line.split("\t"); // Tách từ và giải nghĩa bằng dấu tab
+                if (parts.length == 2) {
+                    String sourceWord = parts[0];
+                    String targetWord = parts[1];
+                    Word newWord = new Word(sourceWord, targetWord);
+                    dict.insert(newWord);
+                }
+            }
+        } catch (FileNotFoundException fnfe) {
+        System.out.println("The specified file not found" + fnfe);
+    } catch (IOException ioe) {
+        System.out.println("I/O Exception: " + ioe);
+    }
+    }
+
+    public static void dictionaryExportToFile(Dictionary dict) {
+        String path = new File("").getAbsolutePath() + "\\src\\main\\java\\com\\example\\dictionaryy\\exportedDictionary.txt";
+
+        try {
+            File file = new File(path);
+
+            // Kiểm tra xem tệp tin đã tồn tại chưa, nếu có rồi thì xóa và tạo tệp tin mới
+            if (!file.exists()) {
+                file.createNewFile();
+            } else {
+                file.delete();
+                file.createNewFile();
+            }
+
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
+                ArrayList<Word> wordList = dict.getList();
+
+                for (Word word : wordList) {
+                    String targetWord = word.getWord_target();
+                    String explainWord = word.getWord_explain();
+
+                    // Ghi từ (source word) và giải nghĩa (target word) vào tệp tin, cách nhau bằng dấu tab
+                    bufferedWriter.write(targetWord + "\t" + explainWord);
+                    bufferedWriter.newLine();
+                }
+                bufferedWriter.close();
+
+        } catch (IOException ioe) {
+            System.out.println("I/O Exception: " + ioe);
+        }
+    }
+
 }
