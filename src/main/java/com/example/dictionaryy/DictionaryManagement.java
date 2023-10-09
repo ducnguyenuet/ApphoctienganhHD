@@ -33,9 +33,9 @@ public class DictionaryManagement {
             while ((line = bufferedReader.readLine()) != null) {
                 String[] parts = line.split("\t"); // Tách từ và giải nghĩa bằng dấu tab
                 if (parts.length == 2) {
-                    String sourceWord = parts[0];
-                    String targetWord = parts[1];
-                    Word newWord = new Word(sourceWord, targetWord);
+                    String targetWord = parts[0];
+                    String explainWord = parts[1];
+                    Word newWord = new Word(targetWord, explainWord);
                     dict.insert(newWord);
                 }
             }
