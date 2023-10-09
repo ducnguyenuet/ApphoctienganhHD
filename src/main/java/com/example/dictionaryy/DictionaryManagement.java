@@ -67,7 +67,7 @@ public class DictionaryManagement {
                     String targetWord = word.getWord_target();
                     String explainWord = word.getWord_explain();
 
-                    // Ghi từ (source word) và giải nghĩa (target word) vào tệp tin, cách nhau bằng dấu tab
+                    
                     bufferedWriter.write(targetWord + "\t" + explainWord);
                     bufferedWriter.newLine();
                 }
