@@ -55,7 +55,7 @@ public class DictionaryCommandline {
         }
         for (int i=0;i<n;i++)
         {
-            System.out.println(i+"   | " +dict.getList().get(i).getWord_target()+"         "+dict.getList().get(i).getWord_explain());
+            System.out.println(i+"\t" +dict.getList().get(i).getWord_target()+"         "+dict.getList().get(i).getWord_explain());
         }
     }
 
@@ -63,6 +63,36 @@ public class DictionaryCommandline {
     {
         insertFromCommandline(dict);
         ShowAllWords(dict);
+    }
+
+    public void dictionarySearcher(String find)
+    {
+        boolean canFind = false;
+        Dictionary dict = new Dictionary();
+        DictionaryManagement.insertFromFile(dict);
+        int n = find.length();
+        int nDict = dict.getList().size();
+        for (int i = 0;i<nDict;i++)
+        {
+            boolean check = true;
+            for(int j = 0;j<n;j++)
+            {
+                if(dict.getList().get(i).getWord_target().charAt(j)!=find.charAt(j))
+                {
+                    check = false;
+                    break;
+                }
+            }
+            if (check)
+            {
+                canFind = true;
+                System.out.println(dict.getList().get(i).getWord_target()+"/t"+dict.getList().get(i).getWord_explain()+"\n");
+            }
+        }
+        if (!canFind)
+        {
+            System.out.println("ko tìm được từ bạn muốn trong từ điển");
+        }
     }
 
     public static void main(String[] args) {
