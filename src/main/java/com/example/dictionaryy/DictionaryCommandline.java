@@ -86,7 +86,9 @@ public class DictionaryCommandline {
             if (check)
             {
                 canFind = true;
-                System.out.println(dict.getList().get(i).getWord_target()+"/t"+dict.getList().get(i).getWord_explain()+"\n");
+                System.out.printf("%-12s%-12s/n",dict.getList().get(i).getWord_target(),dict.getList().get(i).getWord_explain());
+                //String formattedString = String.format("%-" + 15 + "s%-" + 15 + "s%n", dict.getList().get(i).getWord_target(), dict.getList().get(i).getWord_explain());
+                //System.out.println(formattedString);
             }
         }
         if (!canFind)
