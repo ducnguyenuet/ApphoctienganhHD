@@ -39,12 +39,12 @@ public class DictionaryCommandline {
         return false;
     }
     public void ShowAllWords(Dictionary dict){
-        System.out.println("No   | English    | Vietnamese");
+        System.out.printf("%-8s%-16s%-30s\n","No","| English","| Vietnamese");
         int n = dict.getList().size();
-        for (int i=0;i<n;i++)
+        for (int i = 0; i < n; i++)
         {
             int mindex = i;
-            for (int j=i+1;j<n;j++)
+            for (int j = i + 1; j < n; j++)
             {
                 if (compareWord(dict.getList().get(i),dict.getList().get(j)))
                 {
@@ -53,9 +53,10 @@ public class DictionaryCommandline {
             }
             swapWord(dict.getList().get(i),dict.getList().get(mindex));
         }
-        for (int i=0;i<n;i++)
+        for (int i = 0; i < n; i++)
         {
-            System.out.println(i+"\t" +dict.getList().get(i).getWord_target()+"         "+dict.getList().get(i).getWord_explain());
+
+            System.out.printf("%-8s%-16s%-30s\n",i+1,"| "+dict.getList().get(i).getWord_target(),"| "+dict.getList().get(i).getWord_explain());
         }
     }
 
@@ -75,6 +76,7 @@ public class DictionaryCommandline {
         for (int i = 0;i<nDict;i++)
         {
             boolean check = true;
+            int currentNo = 1;
             for(int j = 0;j<n;j++)
             {
                 if(dict.getList().get(i).getWord_target().charAt(j)!=find.charAt(j))
@@ -86,14 +88,12 @@ public class DictionaryCommandline {
             if (check)
             {
                 canFind = true;
-                System.out.printf("%-12s%-12s/n",dict.getList().get(i).getWord_target(),dict.getList().get(i).getWord_explain());
-                //String formattedString = String.format("%-" + 15 + "s%-" + 15 + "s%n", dict.getList().get(i).getWord_target(), dict.getList().get(i).getWord_explain());
-                //System.out.println(formattedString);
+                System.out.printf("%-8s%-16s%-30s\n",currentNo++,"| "+dict.getList().get(i).getWord_target(),"| "+dict.getList().get(i).getWord_explain());
             }
         }
         if (!canFind)
         {
-            System.out.println("ko tìm được từ bạn muốn trong từ điển");
+            System.out.println("Can't find the word you want in the dictionary.");
         }
     }
 
