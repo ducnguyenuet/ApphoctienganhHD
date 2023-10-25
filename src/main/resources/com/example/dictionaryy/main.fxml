@@ -2,6 +2,7 @@
 
 <!--<?import javafx.scene.media.*?>-->
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.paint.*?>
@@ -13,9 +14,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Button?>
 
-<BorderPane fx:id="defaut" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="857.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dictionaryy.MainController">
+<BorderPane fx:id="defaut" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="857.0" style="-fx-border-color: #063F5A; -fx-border-width: 4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dictionaryy.MainController">
    <left>
-      <VBox prefHeight="400.0" prefWidth="154.0" style="-fx-background-color: #043952;" BorderPane.alignment="CENTER">
+      <VBox prefHeight="400.0" prefWidth="154.0" style="-fx-background-color: #043952; -fx-border-width: 3; -fx-border-color: #1C4B74;" BorderPane.alignment="CENTER">
          <children>
             <Button mnemonicParsing="false" onMouseClicked="#md" prefHeight="75.0" prefWidth="154.0" style="-fx-border-color: white; -fx-background-color: transparent;" text="MyDictionary" textFill="#eeeaea" />
             <Button mnemonicParsing="false" onMouseClicked="#wb" prefHeight="74.0" prefWidth="155.0" style="-fx-background-color: transparent; -fx-border-color: white;" text="WebDictionary" textFill="#ebeaea" />
@@ -26,12 +27,36 @@
    <center>
       <BorderPane fx:id="myDictPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #14242B;" BorderPane.alignment="CENTER">
          <top>
-            <HBox prefHeight="43.0" prefWidth="703.0" BorderPane.alignment="CENTER">
+            <HBox prefHeight="56.0" prefWidth="703.0" BorderPane.alignment="CENTER">
                <children>
-                  <TextField prefHeight="55.0" prefWidth="559.0" style="-fx-border-color: #82CC40; -fx-border-width: 2;" />
-                  <Button mnemonicParsing="false" prefHeight="53.0" prefWidth="31.0" text="Button">
+                  <TextField prefHeight="72.0" prefWidth="481.0" style="-fx-border-color: #82CC40; -fx-border-width: 2;" />
+                  <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="66.0">
                      <graphic>
-                        <ImageView fitHeight="41.0" fitWidth="9.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="42.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../java/image/kinhlup.jpg" />
+                           </image>
+                           <viewport>
+                              <Rectangle2D />
+                           </viewport></ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="73.0" prefWidth="66.0">
+                     <graphic>
+                        <ImageView fitHeight="42.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../java/image/loaa.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="56.0" prefWidth="99.0">
+                     <graphic>
+                        <ImageView fitHeight="42.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../java/image/dauX.png" />
+                           </image>
+                        </ImageView>
                      </graphic>
                   </Button>
                </children>
