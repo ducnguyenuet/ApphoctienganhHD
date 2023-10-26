@@ -1,4 +1,4 @@
-package com.example.dictionaryy;
+package controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

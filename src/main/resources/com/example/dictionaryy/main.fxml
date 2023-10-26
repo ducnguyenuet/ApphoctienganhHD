@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Button?>
 
-<BorderPane fx:id="defaut" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="857.0" style="-fx-border-color: #063F5A; -fx-border-width: 4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dictionaryy.MainController">
+<BorderPane fx:id="defaut" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="857.0" style="-fx-border-color: #063F5A; -fx-border-width: 4; -fx-border-style: solid inside;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
    <left>
       <VBox prefHeight="400.0" prefWidth="154.0" style="-fx-background-color: #043952; -fx-border-width: 3; -fx-border-color: #1C4B74;" BorderPane.alignment="CENTER">
          <children>
@@ -34,7 +34,7 @@
                      <graphic>
                         <ImageView fitHeight="42.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../java/image/kinhlup.jpg" />
+                              <Image url="@../../../image/kinhlup.jpg" />
                            </image>
                            <viewport>
                               <Rectangle2D />
@@ -45,7 +45,7 @@
                      <graphic>
                         <ImageView fitHeight="42.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../java/image/loaa.png" />
+                              <Image url="@../../../image/loaa.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -54,7 +54,7 @@
                      <graphic>
                         <ImageView fitHeight="42.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../java/image/dauX.png" />
+                              <Image url="@../../../image/dauX.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -68,10 +68,38 @@
                   <ListView prefHeight="357.0" prefWidth="344.0" />
                   <VBox prefHeight="357.0" prefWidth="362.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="63.0" prefWidth="361.0" style="-fx-background-color: #33FF96; -fx-border-width: 2; -fx-border-color: #0DC6F3;" text="Add New Word" />
-                        <Button mnemonicParsing="false" prefHeight="62.0" prefWidth="361.0" style="-fx-background-color: #33FFF0; -fx-border-color: #0DC6F3; -fx-border-width: 2;" text="Show All Words" />
-                        <Button mnemonicParsing="false" prefHeight="64.0" prefWidth="364.0" style="-fx-background-color: #F4371D; -fx-border-width: 2; -fx-border-color: #0DC6F3;" text="Delete This Word" />
-                        <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="361.0" style="-fx-background-color: #FF9F33; -fx-border-color: #0DC6F3; -fx-border-width: 2;" text="Change This word" />
+                        <Button mnemonicParsing="false" prefHeight="63.0" prefWidth="361.0" style="-fx-background-color: #33FF96; -fx-border-width: 2; -fx-border-color: #0DC6F3;" text="Add New Word">
+                           <graphic>
+                              <ImageView fitHeight="40.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../image/AddIcon.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
+                        <Button mnemonicParsing="false" prefHeight="62.0" prefWidth="361.0" style="-fx-background-color: #33FFF0; -fx-border-color: #0DC6F3; -fx-border-width: 2;" text="Show All Words">
+                           <graphic>
+                              <ImageView fitHeight="33.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../image/Untitled.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
+                        <Button mnemonicParsing="false" prefHeight="64.0" prefWidth="364.0" style="-fx-background-color: #F4371D; -fx-border-width: 2; -fx-border-color: #0DC6F3;" text="Delete This Word">
+                           <graphic>
+                              <ImageView fitHeight="28.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../image/deleteIcon.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
+                        <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="361.0" style="-fx-background-color: #FF9F33; -fx-border-color: #0DC6F3; -fx-border-width: 2;" text="Change This word">
+                           <graphic>
+                              <ImageView fitHeight="28.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../image/modify.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
                         <HBox prefHeight="133.0" prefWidth="361.0">
                            <children>
                               <VBox prefHeight="180.0" prefWidth="266.0">
@@ -80,7 +108,14 @@
                                     <TextField prefHeight="133.0" prefWidth="266.0" />
                                  </children>
                               </VBox>
-                              <Button mnemonicParsing="false" prefHeight="130.0" prefWidth="105.0" style="-fx-background-color: #259205; -fx-border-color: #82CC40;" text="Submit" />
+                              <Button mnemonicParsing="false" prefHeight="130.0" prefWidth="105.0" style="-fx-border-color: #8CC40; -fx-background-color: transparent;">
+                                 <graphic>
+                                    <ImageView fitHeight="118.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../image/submit2.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
                            </children>
                         </HBox>
                      </children>

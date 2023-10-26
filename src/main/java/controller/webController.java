@@ -1,4 +1,4 @@
-package com.example.dictionaryy;
+package controller;
 
 public class webController {
 

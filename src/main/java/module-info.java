@@ -5,4 +5,6 @@ module com.example.dictionaryy {
 
     opens com.example.dictionaryy to javafx.fxml;
     exports com.example.dictionaryy;
+    exports controller;
+    opens controller to javafx.fxml;
 }
