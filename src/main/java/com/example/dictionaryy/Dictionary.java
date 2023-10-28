@@ -17,4 +17,5 @@ public class Dictionary {
     public void insert(Word word) {
         List.add(word);
     }
+
 }
