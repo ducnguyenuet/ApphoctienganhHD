@@ -107,6 +107,10 @@ public class WordOfDB extends Word {
         definition = Definition;
     }
 
-
+    @Override
+    public String toString()
+    {
+        return word_target;
+    }
 
 }

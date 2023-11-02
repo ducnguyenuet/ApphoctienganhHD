@@ -119,8 +119,36 @@ public class Database {
             ppsm.setString(8, word.getExample());
             ppsm.setString(9, word.getSynonyms());
             ppsm.setString(10, word.getTargetLang());
+            ppsm.setString(11, WordTarget);
         } catch (SQLException e){
             System.out.println(e.getMessage());
         }
+    }
+
+    public ArrayList<WordOfDB> getAllWord()
+    {
+        ArrayList<WordOfDB> List = new ArrayList<>();
+        try{
+            rs = stm.executeQuery("SELECT DISTINCT * FROM bookmark");
+            while(rs.next())
+            {
+                String time = rs.getString("time");
+                String source = rs.getString("source");
+                String target = rs.getString("target");
+                String audio = rs.getString("audio");
+                String pronounce = rs.getString("pronounce");
+                String type = rs.getString("type");
+                String definition = rs.getString("definition");
+                String example = rs.getString("example");
+                String synonyms = rs.getString("synonyms");
+                String targetLang = rs.getString("targetLang");
+                WordOfDB word = new WordOfDB(time, source, target, audio, pronounce, type, definition, example, synonyms, targetLang);
+                List.add(word);
+            }
+            List.sort((o1, o2) -> o1.getWord_target().compareTo(o2.getWord_target()));
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return List;
     }
 }
