@@ -84,7 +84,7 @@
                                  </image>
                               </ImageView>
                            </graphic></Button>
-                        <Button mnemonicParsing="false" prefHeight="64.0" prefWidth="364.0" style="-fx-background-color: #F4371D; -fx-border-width: 2; -fx-border-color: #0DC6F3;" text="Delete This Word">
+                        <Button fx:id="DeleButton" mnemonicParsing="false" onAction="#DeleteWord" prefHeight="64.0" prefWidth="364.0" style="-fx-background-color: #F4371D; -fx-border-width: 2; -fx-border-color: #0DC6F3;" text="Delete This Word">
                            <graphic>
                               <ImageView fitHeight="28.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                                  <image>

@@ -1,5 +1,8 @@
 package controller;
 
+
+import com.example.dictionaryy.AlertBox;
+import javafx.scene.control.*;
 import javafx.scene.media.*;
 import com.example.dictionaryy.Database;
 import com.example.dictionaryy.WordOfDB;
@@ -8,9 +11,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.web.WebEngine;
@@ -20,6 +20,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.fxml.FXMLLoader;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+
 import java.io.IOException;
 
 public class MainController implements Initializable {
@@ -36,6 +39,8 @@ public class MainController implements Initializable {
     @FXML
     public Button ShowAW;
     @FXML
+    public Button DeleButton;
+    @FXML
     private WebView webView;
     @FXML
     private WebEngine engine;
@@ -48,6 +53,10 @@ public class MainController implements Initializable {
 
         SearchType.textProperty().addListener((observable, oldValue, newValue) -> {
             Searching(null);
+        });
+
+        ViewSearch.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            DeleButton.isDisable();
         });
 
     }
@@ -116,8 +125,43 @@ public class MainController implements Initializable {
         String audio = word.getAudio();
         String URL = "https:" + audio;
         Media sound = new Media(URL);
+
         MediaPlayer mp = new MediaPlayer(sound);
         mp.play();
 
+    }
+
+    public void DeleteWord(ActionEvent event) {
+        if(ViewSearch.getSelectionModel().getSelectedItem()!= null)
+        {
+            try {
+
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmation Dialog");
+                alert.setHeaderText("Confirm Action");
+                alert.setContentText("Are you sure you want to perform this action?");
+
+                ButtonType buttonTypeOK = new ButtonType("OK");
+                ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+                alert.getButtonTypes().setAll(buttonTypeOK, buttonTypeCancel);
+
+
+                alert.showAndWait().ifPresent(response -> {
+                    if (response == buttonTypeOK) {
+                        WordOfDB word = (WordOfDB) ViewSearch.getSelectionModel().getSelectedItem();
+                        Database db = new Database();
+                        db.deleteThisWord(word.getWord_target());
+                        db.close();
+                    } else {
+                        System.out.println("Người dùng đã hủy bỏ.");
+
+                    }
+                });
+
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        }
     }
 }
