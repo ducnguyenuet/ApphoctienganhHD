@@ -51,9 +51,9 @@ public class MainController implements Initializable {
         engine = webView.getEngine();
         engine.load("https://translate.google.com/?hl=vi");
 
-        SearchType.textProperty().addListener((observable, oldValue, newValue) -> {
-            Searching(null);
-        });
+//        SearchType.textProperty().addListener((observable, oldValue, newValue) -> {
+//            Searching(null);
+//        });
 
         ViewSearch.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             DeleButton.isDisable();
@@ -84,7 +84,7 @@ public class MainController implements Initializable {
         defaut.setCenter(root);
     }
     @FXML
-    void Searching(MouseEvent mouseEvent)
+    void public Searching(ActionEvent event)
     {
         Database db = new Database();
         ArrayList<WordOfDB> List = db.getAllWord();
@@ -135,11 +135,11 @@ public class MainController implements Initializable {
         if(ViewSearch.getSelectionModel().getSelectedItem()!= null)
         {
             try {
-
+                WordOfDB word = (WordOfDB) ViewSearch.getSelectionModel().getSelectedItem();
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Confirmation Dialog");
-                alert.setHeaderText("Confirm Action");
-                alert.setContentText("Are you sure you want to perform this action?");
+                alert.setHeaderText(word.getWord_target());
+                alert.setContentText("Are you sure to delete this word?");
 
                 ButtonType buttonTypeOK = new ButtonType("OK");
                 ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
@@ -149,13 +149,28 @@ public class MainController implements Initializable {
 
                 alert.showAndWait().ifPresent(response -> {
                     if (response == buttonTypeOK) {
-                        WordOfDB word = (WordOfDB) ViewSearch.getSelectionModel().getSelectedItem();
+                        WordOfDB word2 = (WordOfDB) ViewSearch.getSelectionModel().getSelectedItem();
                         Database db = new Database();
-                        db.deleteThisWord(word.getWord_target());
+                        db.deleteThisWord(word2.getWord_target());
+                        ArrayList<WordOfDB> List = db.getAllWord();
                         db.close();
-                    } else {
-                        System.out.println("Người dùng đã hủy bỏ.");
-
+                        String searchText = SearchType.getText();
+                        if (!searchText.isEmpty())
+                        {
+                            ArrayList<WordOfDB> viewList = new ArrayList<>();
+                            for (WordOfDB it:List)
+                            {
+                                if (it.getWord_target().startsWith(searchText))
+                                {
+                                    viewList.add(it);
+                                }
+                            }
+                            ViewSearch.setItems(FXCollections.observableArrayList(viewList));
+                        }
+                        else
+                        {
+                            ViewSearch.setItems(FXCollections.observableArrayList());
+                        }
                     }
                 });
 
