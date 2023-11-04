@@ -29,8 +29,8 @@
          <top>
             <HBox prefHeight="56.0" prefWidth="703.0" BorderPane.alignment="CENTER">
                <children>
-                  <TextField fx:id="SearchType" onAction="#Searching" prefHeight="56.0" prefWidth="646.0" promptText="Type here to search" style="-fx-border-color: #82CC40; -fx-border-width: 2;" />
-                  <Button mnemonicParsing="false" prefHeight="56.0" prefWidth="38.0">
+                  <TextField fx:id="SearchType" prefHeight="56.0" prefWidth="646.0" promptText="Type here to search" style="-fx-border-color: #82CC40; -fx-border-width: 2;" />
+                  <Button fx:id="Search" mnemonicParsing="false" onAction="#Searching" prefHeight="56.0" prefWidth="38.0">
                      <graphic>
                         <ImageView fitHeight="42.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
                            <image>
