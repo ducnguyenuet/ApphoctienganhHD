@@ -29,18 +29,7 @@
          <top>
             <HBox prefHeight="56.0" prefWidth="703.0" BorderPane.alignment="CENTER">
                <children>
-                  <TextField fx:id="SearchType" prefHeight="56.0" prefWidth="646.0" promptText="Type here to search" style="-fx-border-color: #82CC40; -fx-border-width: 2;" />
-                  <Button fx:id="Search" mnemonicParsing="false" onAction="#Searching" prefHeight="56.0" prefWidth="38.0">
-                     <graphic>
-                        <ImageView fitHeight="42.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../image/kinhlup.jpg" />
-                           </image>
-                           <viewport>
-                              <Rectangle2D />
-                           </viewport></ImageView>
-                     </graphic>
-                  </Button>
+                  <TextField fx:id="SearchType" onInputMethodTextChanged="#Searching" prefHeight="56.0" prefWidth="681.0" promptText="Type here to search" style="-fx-border-color: #82CC40; -fx-border-width: 2;" />
                   <Button fx:id="spk" mnemonicParsing="false" onAction="#speaking" prefHeight="73.0" prefWidth="66.0">
                      <graphic>
                         <ImageView fitHeight="42.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true">
@@ -65,7 +54,7 @@
          <center>
             <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <ListView fx:id="ViewSearch" prefHeight="536.0" prefWidth="476.0" />
+                  <ListView fx:id="ViewSearch" onMouseClicked="#Output" prefHeight="536.0" prefWidth="476.0" />
                   <VBox prefHeight="357.0" prefWidth="362.0">
                      <children>
                         <Button mnemonicParsing="false" prefHeight="62.0" prefWidth="370.0" style="-fx-background-color: #33FF96; -fx-border-width: 2; -fx-border-color: #0DC6F3;" text="Add New Word">
@@ -83,7 +72,8 @@
                                     <Image url="@../../../image/Untitled.png" />
                                  </image>
                               </ImageView>
-                           </graphic></Button>
+                           </graphic>
+                        </Button>
                         <Button fx:id="DeleButton" mnemonicParsing="false" onAction="#DeleteWord" prefHeight="64.0" prefWidth="364.0" style="-fx-background-color: #F4371D; -fx-border-width: 2; -fx-border-color: #0DC6F3;" text="Delete This Word">
                            <graphic>
                               <ImageView fitHeight="28.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
@@ -100,7 +90,7 @@
                                  </image>
                               </ImageView>
                            </graphic></Button>
-                        <TextArea prefHeight="300.0" prefWidth="362.0" />
+                        <TextArea id="my-text-area" fx:id="wordOutPut" prefHeight="300.0" prefWidth="362.0" />
                      </children>
                   </VBox>
                </children>

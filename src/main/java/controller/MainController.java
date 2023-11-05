@@ -3,6 +3,7 @@ package controller;
 
 import com.example.dictionaryy.AlertBox;
 import javafx.scene.control.*;
+import javafx.scene.input.InputMethodEvent;
 import javafx.scene.media.*;
 import com.example.dictionaryy.Database;
 import com.example.dictionaryy.WordOfDB;
@@ -13,6 +14,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
@@ -24,6 +28,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+
+
 
 public class MainController implements Initializable {
     @FXML
@@ -41,6 +47,8 @@ public class MainController implements Initializable {
     @FXML
     public Button DeleButton;
     @FXML
+    public TextArea wordOutPut;
+    @FXML
     private WebView webView;
     @FXML
     private WebEngine engine;
@@ -50,15 +58,12 @@ public class MainController implements Initializable {
         webView = new WebView();
         engine = webView.getEngine();
         engine.load("https://translate.google.com/?hl=vi");
-
         SearchType.textProperty().addListener((observable, oldValue, newValue) -> {
             Searching(null);
         });
-
-        ViewSearch.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            DeleButton.isDisable();
+        wordOutPut.textProperty().addListener((observable, oldValue, newValue) -> {
+            Output(null);
         });
-
     }
 
     @FXML
@@ -84,7 +89,7 @@ public class MainController implements Initializable {
         defaut.setCenter(root);
     }
     @FXML
-    void Searching(MouseEvent mouseEvent)
+    void Searching(InputMethodEvent event)
     {
         Database db = new Database();
         ArrayList<WordOfDB> List = db.getAllWord();
@@ -105,6 +110,7 @@ public class MainController implements Initializable {
         else
         {
             ViewSearch.setItems(FXCollections.observableArrayList());
+            wordOutPut.setText("");
         }
     }
 
@@ -135,11 +141,11 @@ public class MainController implements Initializable {
         if(ViewSearch.getSelectionModel().getSelectedItem()!= null)
         {
             try {
-
+                WordOfDB word = (WordOfDB)ViewSearch.getSelectionModel().getSelectedItem();
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Confirmation Dialog");
-                alert.setHeaderText("Confirm Action");
-                alert.setContentText("Are you sure you want to perform this action?");
+                alert.setHeaderText(word.getWord_target());
+                alert.setContentText("Are you sure to delete this word?");
 
                 ButtonType buttonTypeOK = new ButtonType("OK");
                 ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
@@ -149,12 +155,30 @@ public class MainController implements Initializable {
 
                 alert.showAndWait().ifPresent(response -> {
                     if (response == buttonTypeOK) {
-                        WordOfDB word = (WordOfDB) ViewSearch.getSelectionModel().getSelectedItem();
+                        WordOfDB word2 = (WordOfDB) ViewSearch.getSelectionModel().getSelectedItem();
                         Database db = new Database();
-                        db.deleteThisWord(word.getWord_target());
+                        db.deleteThisWord(word2.getWord_target());
+                        ArrayList<WordOfDB> List = db.getAllWord();
+                        String searchText = SearchType.getText();
+                        if (!searchText.isEmpty())
+                        {
+                            ArrayList<WordOfDB> viewList = new ArrayList<>();
+                            for (WordOfDB it:List)
+                            {
+                                if (it.getWord_target().startsWith(searchText))
+                                {
+                                    viewList.add(it);
+                                }
+                            }
+                            ViewSearch.setItems(FXCollections.observableArrayList(viewList));
+                        }
+                        else
+                        {
+                            ViewSearch.setItems(FXCollections.observableArrayList());
+                        }
                         db.close();
+                        wordOutPut.setText("");
                     } else {
-                        System.out.println("Người dùng đã hủy bỏ.");
 
                     }
                 });
@@ -162,6 +186,21 @@ public class MainController implements Initializable {
             } catch (Exception e){
                 e.printStackTrace();
             }
+        } else{
+            Alert WarnAlert = new Alert(Alert.AlertType.WARNING);
+            WarnAlert.setTitle("Warning");
+            WarnAlert.setContentText("choose the word to be deleted first");
+            ButtonType cancelButton = new ButtonType("OK", ButtonBar.ButtonData.CANCEL_CLOSE);
+            WarnAlert.getButtonTypes().setAll(cancelButton);
+            WarnAlert.showAndWait();
         }
+    }
+
+
+    public void Output(MouseEvent mouseEvent) {
+        WordOfDB word = (WordOfDB)ViewSearch.getSelectionModel().getSelectedItem();
+        wordOutPut.setStyle("-fx-font-family: Dancing Script; -fx-font-size: 18; -fx-font-weight: normal; -fx-font-posture: regular");
+        wordOutPut.setText(word.getInfo());
+
     }
 }

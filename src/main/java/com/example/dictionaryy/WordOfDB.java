@@ -9,7 +9,6 @@ public class WordOfDB extends Word {
     private String synonyms;
     private String targetLang;
     private String example;
-    private String info;
 
     public String getDefinition() {
         return definition;
@@ -20,14 +19,6 @@ public class WordOfDB extends Word {
     }
 
     private String definition;
-
-    public String getInfo() {
-        return info;
-    }
-
-    public void setInfo(String info) {
-        this.info = info;
-    }
 
     private String type;
 
@@ -111,6 +102,17 @@ public class WordOfDB extends Word {
     public String toString()
     {
         return word_target;
+    }
+
+    public String getInfo()
+    {
+        String ans = "";
+        ans += "meaning:\t" + word_explain + "\n"+ "\n";
+        ans += "pronounce:\t"+ pronounce + "\n"+ "\n";
+        ans += "type:\t" + type + "\n"+ "\n";
+        ans += "definition:\t" + definition + "\n"+ "\n";
+        ans += "example:\t" + example + "\n"+ "\n";
+        return  ans;
     }
 
 }
