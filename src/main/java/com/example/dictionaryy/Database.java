@@ -89,6 +89,7 @@ public class Database {
             ppsm.setString(8, word.getExample());
             ppsm.setString(9, word.getSynonyms());
             ppsm.setString(10, word.getTargetLang());
+            ppsm.execute();
         } catch (SQLException e){
             System.out.println(e.getMessage());
         }
@@ -108,7 +109,7 @@ public class Database {
     public void ChangeThisWord(String WordTarget,WordOfDB word)
     {
         try{
-            PreparedStatement ppsm = cont.prepareStatement("UPDATE bookmark SET time = ?, source = ?, target = ?, pronounce = ?, type = ?, definition = ?, example = ?, synonyms = ?, targetLang = ? WHERE source = ?");
+            PreparedStatement ppsm = cont.prepareStatement("UPDATE bookmark SET time = ?, source = ?, target = ?,audio = ?, pronounce = ?, type = ?, definition = ?, example = ?, synonyms = ?, targetLang = ? WHERE source = ?");
             ppsm.setString(1,getTime());
             ppsm.setString(2,word.getWord_target());
             ppsm.setString(3, word.getWord_explain());
@@ -120,6 +121,7 @@ public class Database {
             ppsm.setString(9, word.getSynonyms());
             ppsm.setString(10, word.getTargetLang());
             ppsm.setString(11, WordTarget);
+            ppsm.execute();
         } catch (SQLException e){
             System.out.println(e.getMessage());
         }

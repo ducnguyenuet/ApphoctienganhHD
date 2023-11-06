@@ -1,14 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import java.net.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="controller.EditController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane id="div" prefHeight="400.0" prefWidth="600.0" stylesheets="@../../../cssStyle/editStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EditController">
+   <children>
+      <VBox id="div" layoutY="-1.0" prefHeight="406.0" prefWidth="601.0" stylesheets="@../../../cssStyle/editStyle.css">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="8.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="63.0" prefWidth="147.0" text="Word_Target">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="wt" prefHeight="39.0" prefWidth="167.0" />
+                  <Label alignment="CENTER" prefHeight="27.0" prefWidth="131.0" text="Word_Explain" />
+                  <TextField fx:id="we" prefHeight="39.0" prefWidth="196.0" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="8.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="27.0" prefWidth="71.0" text="Audio" textAlignment="CENTER" />
+                  <TextField fx:id="ad" prefHeight="39.0" prefWidth="116.0" />
+                  <Label alignment="CENTER" text="TargetLang" />
+                  <TextField fx:id="tl" prefHeight="39.0" prefWidth="102.0" />
+                  <Label alignment="CENTER" prefHeight="27.0" prefWidth="51.0" text="Type" />
+                  <TextField fx:id="tp" prefHeight="39.0" prefWidth="109.0" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="8.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="27.0" prefWidth="109.0" text="Pronounce" />
+                  <TextField fx:id="pn" prefHeight="39.0" prefWidth="153.0" />
+                  <Label alignment="CENTER" prefHeight="27.0" prefWidth="92.0" text="Synonyms" />
+                  <TextField fx:id="sn" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="8.0">
+               <VBox.margin>
+                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+               </VBox.margin>
+               <children>
+                  <Label alignment="CENTER" text="Example" />
+                  <TextField fx:id="ep" prefHeight="39.0" prefWidth="209.0" />
+                  <Label alignment="CENTER" text="Defination" />
+                  <TextField fx:id="df" prefHeight="39.0" prefWidth="198.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <VBox.margin>
+                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+               </VBox.margin>
+               <children>
+                  <Button fx:id="okBut" mnemonicParsing="false" onAction="#updateNewWord" text="OK" />
+               </children>
+            </HBox>
+         </children></VBox>
+   </children>
 </AnchorPane>

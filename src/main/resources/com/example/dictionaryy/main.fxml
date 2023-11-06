@@ -57,7 +57,7 @@
                   <ListView fx:id="ViewSearch" onMouseClicked="#Output" prefHeight="536.0" prefWidth="476.0" />
                   <VBox prefHeight="357.0" prefWidth="362.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="62.0" prefWidth="370.0" style="-fx-background-color: #33FF96; -fx-border-width: 2; -fx-border-color: #0DC6F3;" text="Add New Word">
+                        <Button mnemonicParsing="false" onAction="#addStage" prefHeight="62.0" prefWidth="370.0" style="-fx-background-color: #33FF96; -fx-border-width: 2; -fx-border-color: #0DC6F3;" text="Add New Word">
                            <graphic>
                               <ImageView fitHeight="40.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -82,7 +82,7 @@
                                  </image>
                               </ImageView>
                            </graphic></Button>
-                        <Button mnemonicParsing="false" prefHeight="58.0" prefWidth="367.0" style="-fx-background-color: #FF9F33; -fx-border-color: #0DC6F3; -fx-border-width: 2;" text="Change This word">
+                        <Button mnemonicParsing="false" onAction="#changeStage" prefHeight="58.0" prefWidth="367.0" style="-fx-background-color: #FF9F33; -fx-border-color: #0DC6F3; -fx-border-width: 2;" text="Change This word">
                            <graphic>
                               <ImageView fitHeight="28.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -90,7 +90,7 @@
                                  </image>
                               </ImageView>
                            </graphic></Button>
-                        <TextArea id="my-text-area" fx:id="wordOutPut" prefHeight="300.0" prefWidth="362.0" />
+                        <TextArea id="my-text-area" fx:id="wordOutPut" prefHeight="300.0" prefWidth="362.0" styleClass="textarea" stylesheets="@../../../cssStyle/main.css" />
                      </children>
                   </VBox>
                </children>

@@ -18,6 +18,11 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
+
+
+//        WordOfDB word = new WordOfDB("a","aagoat","messi","sdd","sdsds","sdsds","sdds","dsd","dsd","ddd");
+//        Database db = new Database();
+//        db.addNewWord(word);
         launch();
     }
 }

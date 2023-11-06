@@ -1,0 +1,12 @@
+.textarea {
+    -fx-font-family: Arial;
+    -fx-font-size: 20;
+    -fx-font-weight: normal;
+    -fx-font-posture: regular;
+}
+
+.textarea::first-line {
+  -fx-font-weight: bold;
+  -fx-font-size: 30;
+  -fx-font-family: Dancing Script, cursive;
+}

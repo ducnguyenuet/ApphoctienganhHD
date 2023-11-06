@@ -2,6 +2,7 @@ package controller;
 
 
 import com.example.dictionaryy.AlertBox;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.InputMethodEvent;
 import javafx.scene.media.*;
@@ -199,8 +200,78 @@ public class MainController implements Initializable {
 
     public void Output(MouseEvent mouseEvent) {
         WordOfDB word = (WordOfDB)ViewSearch.getSelectionModel().getSelectedItem();
-        wordOutPut.setStyle("-fx-font-family: Dancing Script; -fx-font-size: 18; -fx-font-weight: normal; -fx-font-posture: regular");
+        //wordOutPut.setStyle("-fx-font-family: Dancing Script; -fx-font-size: 18; -fx-font-weight: normal; -fx-font-posture: regular");
         wordOutPut.setText(word.getInfo());
 
+    }
+
+    public void addStage(ActionEvent event) {
+            try{
+                Parent root = null;
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/dictionaryy/edit.fxml"));
+                root = loader.load();
+                EditController editController = loader.getController();
+                editController.setAdd(true);
+                Stage stage = new Stage();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+                Button closeStage = (Button) scene.lookup("#okBut");
+                closeStage.setOnMouseClicked(e ->
+                {
+                    stage.close();
+                    SearchType.clear();
+                });
+            } catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+
+
+    }
+
+    public void changeStage(ActionEvent event) {
+        if(ViewSearch.getSelectionModel().getSelectedItem()!= null) {
+            try {
+                WordOfDB wordBefore = (WordOfDB) ViewSearch.getSelectionModel().getSelectedItem();
+                Parent root = null;
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/dictionaryy/edit.fxml"));
+                root = loader.load();
+                EditController editController = loader.getController();
+                editController.setAdd(false);
+                editController.setWordBeReplace(wordBefore);
+                Stage stage = new Stage();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+                Button closeStage = (Button) scene.lookup("#okBut");
+                TextField wt = (TextField) scene.lookup("#wt");
+                TextField we = (TextField) scene.lookup("#we");
+                TextField ad = (TextField) scene.lookup("#ad");
+                TextField tl = (TextField) scene.lookup("#tl");
+                TextField tp = (TextField) scene.lookup("#tp");
+                TextField pn = (TextField) scene.lookup("#pn");
+                TextField sn = (TextField) scene.lookup("#sn");
+                TextField ep = (TextField) scene.lookup("#ep");
+                TextField df = (TextField) scene.lookup("#df");
+                wt.setText(wordBefore.getWord_target());
+                we.setText(wordBefore.getWord_explain());
+                ad.setText(wordBefore.getAudio());
+                tl.setText(wordBefore.getTargetLang());
+                tp.setText(wordBefore.getType());
+                pn.setText(wordBefore.getPronounce());
+                sn.setText(wordBefore.getSynonyms());
+                ep.setText(wordBefore.getExample());
+                df.setText(wordBefore.getDefinition());
+                closeStage.setOnMouseClicked(e ->
+                {
+                    stage.close();
+                    SearchType.clear();
+                });
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
