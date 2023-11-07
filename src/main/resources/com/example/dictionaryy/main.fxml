@@ -14,13 +14,43 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Button?>
 
-<BorderPane fx:id="defaut" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-border-color: #063F5A; -fx-border-width: 4; -fx-border-style: solid inside;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
+<BorderPane fx:id="defaut" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="972.0" style="-fx-border-color: #063F5A; -fx-border-width: 4; -fx-border-style: solid inside;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
    <left>
-      <VBox prefHeight="400.0" prefWidth="154.0" style="-fx-background-color: #043952; -fx-border-width: 3; -fx-border-color: #1C4B74;" BorderPane.alignment="CENTER">
+      <VBox prefHeight="592.0" prefWidth="66.0" style="-fx-background-color: #043952; -fx-border-width: 3; -fx-border-color: #1C4B74;" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onMouseClicked="#md" prefHeight="75.0" prefWidth="154.0" style="-fx-border-color: white; -fx-background-color: transparent;" text="MyDictionary" textFill="#eeeaea" />
-            <Button mnemonicParsing="false" onMouseClicked="#wb" prefHeight="74.0" prefWidth="155.0" style="-fx-background-color: transparent; -fx-border-color: white;" text="WebDictionary" textFill="#ebeaea" />
-            <Button mnemonicParsing="false" onMouseClicked="#game" prefHeight="67.0" prefWidth="154.0" style="-fx-background-color: transparent; -fx-border-color: white;" text="Game" textFill="#f5f2f2" />
+            <Button mnemonicParsing="false" onMouseClicked="#md" prefHeight="75.0" prefWidth="154.0" style="-fx-background-color: transparent;" textFill="#eeeaea">
+               <graphic>
+                  <ImageView fitHeight="54.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../image/book.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Button mnemonicParsing="false" onMouseClicked="#wb" prefHeight="74.0" prefWidth="108.0" style="-fx-background-color: transparent;" textFill="#ebeaea">
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../image/website.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Button mnemonicParsing="false" onMouseClicked="#game" prefHeight="67.0" prefWidth="154.0" style="-fx-background-color: transparent;" textFill="#f5f2f2">
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../image/game-controller.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Button mnemonicParsing="false" prefHeight="67.0" prefWidth="86.0" style="-fx-background-color: tranparent;">
+               <graphic>
+                  <ImageView fitHeight="52.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../image/api%20(1).png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </VBox>
    </left>
@@ -29,17 +59,20 @@
          <top>
             <HBox prefHeight="56.0" prefWidth="703.0" BorderPane.alignment="CENTER">
                <children>
-                  <TextField fx:id="SearchType" onInputMethodTextChanged="#Searching" prefHeight="56.0" prefWidth="681.0" promptText="Type here to search" style="-fx-border-color: #82CC40; -fx-border-width: 2;" />
+                  <TextField fx:id="SearchType" onInputMethodTextChanged="#Searching" prefHeight="56.0" prefWidth="727.0" promptText="Type here to search" style="-fx-border-color: #82CC40; -fx-border-width: 2;">
+                     <HBox.margin>
+                        <Insets left="8.0" />
+                     </HBox.margin></TextField>
                   <Button fx:id="spk" mnemonicParsing="false" onAction="#speaking" prefHeight="73.0" prefWidth="66.0">
                      <graphic>
-                        <ImageView fitHeight="42.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="42.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../image/loaa.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="dType" mnemonicParsing="false" onAction="#deleteType" prefHeight="56.0" prefWidth="99.0">
+                  <Button fx:id="dType" mnemonicParsing="false" onAction="#deleteType" prefHeight="56.0" prefWidth="91.0">
                      <graphic>
                         <ImageView fitHeight="42.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -54,17 +87,23 @@
          <center>
             <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <ListView fx:id="ViewSearch" onMouseClicked="#Output" prefHeight="536.0" prefWidth="476.0" />
+                  <ListView fx:id="ViewSearch" onMouseClicked="#Output" prefHeight="536.0" prefWidth="521.0">
+                     <HBox.margin>
+                        <Insets left="8.0" right="2.0" />
+                     </HBox.margin></ListView>
                   <VBox prefHeight="357.0" prefWidth="362.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#addStage" prefHeight="62.0" prefWidth="370.0" style="-fx-background-color: #33FF96; -fx-border-width: 2; -fx-border-color: #0DC6F3;" text="Add New Word">
+                        <Button mnemonicParsing="false" onAction="#addStage" prefHeight="61.0" prefWidth="363.0" style="-fx-background-color: #33FF96; -fx-border-width: 2; -fx-border-color: #0DC6F3;" text="Add New Word">
                            <graphic>
                               <ImageView fitHeight="40.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../../image/AddIcon.png" />
                                  </image>
                               </ImageView>
-                           </graphic></Button>
+                           </graphic>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin></Button>
                         <Button fx:id="ShowAW" mnemonicParsing="false" onAction="#ShowWords" prefHeight="55.0" prefWidth="380.0" style="-fx-background-color: #33FFF0; -fx-border-color: #0DC6F3; -fx-border-width: 2;" text="Show All Words">
                            <graphic>
                               <ImageView fitHeight="33.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
@@ -90,7 +129,13 @@
                                  </image>
                               </ImageView>
                            </graphic></Button>
-                        <TextArea id="my-text-area" fx:id="wordOutPut" prefHeight="300.0" prefWidth="362.0" styleClass="textarea" stylesheets="@../../../cssStyle/main.css" />
+                        <TextArea id="my-text-area" fx:id="wordOutPut" prefHeight="300.0" prefWidth="388.0" styleClass="textarea" stylesheets="@../../../cssStyle/main.css">
+                           <padding>
+                              <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin></TextArea>
                      </children>
                   </VBox>
                </children>

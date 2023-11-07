@@ -95,7 +95,7 @@ public class MainController implements Initializable {
         Database db = new Database();
         ArrayList<WordOfDB> List = db.getAllWord();
         db.close();
-        String searchText = SearchType.getText();
+        String searchText = SearchType.getText().trim().toLowerCase();
         if (!searchText.isEmpty())
         {
             ArrayList<WordOfDB> viewList = new ArrayList<>();
