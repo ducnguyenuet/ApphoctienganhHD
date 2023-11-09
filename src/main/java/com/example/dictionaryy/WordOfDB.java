@@ -104,15 +104,17 @@ public class WordOfDB extends Word {
         return word_target;
     }
 
-    public String getInfo()
-    {
+    public String getInfo() {
         String ans = "";
-        ans += "meaning:\t" + word_explain + "\n"+ "\n";
-        ans += "pronounce:\t"+ pronounce + "\n"+ "\n";
-        ans += "type:\t" + type + "\n"+ "\n";
-        ans += "definition:\t" + definition + "\n"+ "\n";
-        ans += "example:\t" + example + "\n"+ "\n";
-        return  ans;
+        ans += String.format("%-12s%-50s%n", "meaning:", word_explain);
+        ans += String.format("%-12s%-50s%n", "pronounce:", pronounce);
+        ans += String.format("%-12s%-50s%n", "type:", type);
+        ans += String.format("%-12s%-50s%n", "definition:", definition);
+        ans += String.format("%-12s%-50s%n", "example:", example);
+        return ans;
     }
+
+
+
 
 }

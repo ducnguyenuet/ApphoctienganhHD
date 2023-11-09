@@ -42,15 +42,14 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button mnemonicParsing="false" prefHeight="67.0" prefWidth="86.0" style="-fx-background-color: tranparent;">
+            <Button mnemonicParsing="false" onMouseClicked="#api" prefHeight="67.0" prefWidth="86.0" style="-fx-background-color: tranparent;">
                <graphic>
                   <ImageView fitHeight="52.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../image/api%20(1).png" />
+                        <Image url="@../../../image/api(1).png" />
                      </image>
                   </ImageView>
-               </graphic>
-            </Button>
+               </graphic></Button>
          </children>
       </VBox>
    </left>
@@ -121,7 +120,7 @@
                                  </image>
                               </ImageView>
                            </graphic></Button>
-                        <Button mnemonicParsing="false" onAction="#changeStage" prefHeight="58.0" prefWidth="367.0" style="-fx-background-color: #FF9F33; -fx-border-color: #0DC6F3; -fx-border-width: 2;" text="Change This word">
+                        <Button mnemonicParsing="false" onAction="#changeStage" prefHeight="58.0" prefWidth="367.0" style="-fx-background-color: #FF9F33; -fx-border-color: #0DC6F3; -fx-border-width: 2;" text="Change This Word">
                            <graphic>
                               <ImageView fitHeight="28.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -136,6 +135,7 @@
                            <VBox.margin>
                               <Insets />
                            </VBox.margin></TextArea>
+
                      </children>
                   </VBox>
                </children>

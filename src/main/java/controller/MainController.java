@@ -1,5 +1,5 @@
 package controller;
-
+import com.example.dictionaryy.translatorFromAPI;
 
 import com.example.dictionaryy.AlertBox;
 import javafx.scene.Scene;
@@ -34,9 +34,15 @@ import java.io.IOException;
 
 public class MainController implements Initializable {
     @FXML
+    private Button apiIcon;
+    @FXML
+    private Stage apiStage;
+    @FXML
     public BorderPane defaut;
     @FXML
     public BorderPane myDictPane;
+    @FXML
+    public BorderPane myAPI;
     @FXML
     public TextField SearchType;
     @FXML
@@ -65,6 +71,8 @@ public class MainController implements Initializable {
         wordOutPut.textProperty().addListener((observable, oldValue, newValue) -> {
             Output(null);
         });
+        //apiButton.setOnAction(event -> translateWithAPI(event));
+//        apiIcon.setOnMouseClicked(event -> apiTranslation());
     }
 
     @FXML
@@ -115,6 +123,10 @@ public class MainController implements Initializable {
         }
     }
 
+    @FXML
+    public void api(MouseEvent mouseEvent) {
+        loadScene("api_window.fxml");
+    }
 
     public void ShowWords(ActionEvent event) {
         Database db = new Database();
@@ -274,4 +286,5 @@ public class MainController implements Initializable {
             }
         }
     }
+
 }
