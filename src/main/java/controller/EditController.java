@@ -3,8 +3,7 @@ package controller;
 import com.example.dictionaryy.Database;
 import com.example.dictionaryy.WordOfDB;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -40,16 +39,27 @@ public class EditController {
     }
 
     public void updateNewWord(ActionEvent event) {
-        WordOfDB wordEdit = new WordOfDB("aa",wt.getText(),we.getText(),ad.getText(),tl.getText(),tp.getText(),pn.getText(),sn.getText(),ep.getText(),df.getText());
-        Database db = new Database();
-        if(add == true)
-        {
-            db.addNewWord(wordEdit);
+        String wtt = wt.getText();
+        String wee = we.getText();
+        if(!wtt.isEmpty()&&!wee.isEmpty()) {
+            WordOfDB wordEdit = new WordOfDB("aa", wt.getText(), we.getText(), ad.getText(), tl.getText(), tp.getText(), pn.getText(), sn.getText(), ep.getText(), df.getText());
+            Database db = new Database();
+            if (add == true) {
+                db.addNewWord(wordEdit);
+            } else {
+                db.ChangeThisWord(wordBeReplace.getWord_target(), wordEdit);
+            }
+            db.close();
         }
         else {
-            db.ChangeThisWord(wordBeReplace.getWord_target(),wordEdit);
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning");
+            alert.setHeaderText("Invalid input");
+            alert.setContentText("WordTarget and WordExplain can't be blank");
+            ButtonType buttonTypeCancel = new ButtonType("OK", ButtonBar.ButtonData.CANCEL_CLOSE);
+            alert.getButtonTypes().setAll(buttonTypeCancel);
+            alert.showAndWait();
         }
-        db.close();
     }
 
     public void initialize(URL url, ResourceBundle defaut){

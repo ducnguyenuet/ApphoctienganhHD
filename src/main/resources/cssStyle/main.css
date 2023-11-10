@@ -10,3 +10,26 @@
   -fx-font-size: 30;
   -fx-font-family: Dancing Script, cursive;
 }
+
+.buttonMenu {
+    -fx-background-color: transparent;
+}
+
+.buttonMenu:hover {
+    -fx-background-color: #22ACF0;
+    -fx-background-radius: 10px;
+    -fx-font-family: "Segoe UI Bold";
+    -fx-font-size: 13px;
+}
+
+.buttonMenu:pressed{
+    -fx-background-color: #22ACF0;
+    -fx-background-radius: 10px;
+    -fx-font-family: "Segoe UI Bold";
+    -fx-font-size: 13px;
+    -fx-rotate:10;
+}
+
+.buttonMenu:active {
+    -fx-background-color: #22ACF0;
+}

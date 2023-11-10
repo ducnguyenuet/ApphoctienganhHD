@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
+<?import javafx.scene.paint.*?>
 <?import javafx.geometry.*?>
 <?import java.net.*?>
 <?import java.lang.*?>
@@ -14,13 +16,13 @@
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="8.0">
                <children>
-                  <Label alignment="CENTER" prefHeight="63.0" prefWidth="147.0" text="Word_Target">
+                  <Label alignment="CENTER" prefHeight="63.0" prefWidth="147.0" text="Word_Target" textFill="#08a4d6">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
                   </Label>
                   <TextField fx:id="wt" prefHeight="39.0" prefWidth="167.0" />
-                  <Label alignment="CENTER" prefHeight="27.0" prefWidth="131.0" text="Word_Explain" />
+                  <Label alignment="CENTER" prefHeight="27.0" prefWidth="131.0" text="Word_Explain" textFill="#08a4d6" />
                   <TextField fx:id="we" prefHeight="39.0" prefWidth="196.0" />
                </children>
                <VBox.margin>
@@ -29,11 +31,11 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="8.0">
                <children>
-                  <Label alignment="CENTER" prefHeight="27.0" prefWidth="71.0" text="Audio" textAlignment="CENTER" />
+                  <Label alignment="CENTER" prefHeight="27.0" prefWidth="71.0" text="Audio" textAlignment="CENTER" textFill="#08a4d6" />
                   <TextField fx:id="ad" prefHeight="39.0" prefWidth="116.0" />
-                  <Label alignment="CENTER" text="TargetLang" />
+                  <Label alignment="CENTER" text="TargetLang" textFill="#08a4d6" />
                   <TextField fx:id="tl" prefHeight="39.0" prefWidth="102.0" />
-                  <Label alignment="CENTER" prefHeight="27.0" prefWidth="51.0" text="Type" />
+                  <Label alignment="CENTER" prefHeight="27.0" prefWidth="51.0" text="Type" textFill="#08a4d6" />
                   <TextField fx:id="tp" prefHeight="39.0" prefWidth="109.0" />
                </children>
                <VBox.margin>
@@ -42,9 +44,9 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="8.0">
                <children>
-                  <Label alignment="CENTER" prefHeight="27.0" prefWidth="109.0" text="Pronounce" />
+                  <Label alignment="CENTER" prefHeight="27.0" prefWidth="109.0" text="Pronounce" textFill="#08a4d6" />
                   <TextField fx:id="pn" prefHeight="39.0" prefWidth="153.0" />
-                  <Label alignment="CENTER" prefHeight="27.0" prefWidth="92.0" text="Synonyms" />
+                  <Label alignment="CENTER" prefHeight="27.0" prefWidth="92.0" text="Synonyms" textFill="#08a4d6" />
                   <TextField fx:id="sn" />
                </children>
                <VBox.margin>
@@ -56,9 +58,9 @@
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </VBox.margin>
                <children>
-                  <Label alignment="CENTER" text="Example" />
+                  <Label alignment="CENTER" text="Example" textFill="#08a4d6" />
                   <TextField fx:id="ep" prefHeight="39.0" prefWidth="209.0" />
-                  <Label alignment="CENTER" text="Defination" />
+                  <Label alignment="CENTER" text="Defination" textFill="#08a4d6" />
                   <TextField fx:id="df" prefHeight="39.0" prefWidth="198.0" />
                </children>
             </HBox>
@@ -67,7 +69,14 @@
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </VBox.margin>
                <children>
-                  <Button fx:id="okBut" mnemonicParsing="false" onAction="#updateNewWord" text="OK" />
+                  <Button fx:id="okBut" mnemonicParsing="false" onAction="#updateNewWord" style="-fx-background-color: transparent;">
+                     <graphic>
+                        <ImageView fitHeight="54.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../image/check.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
                </children>
             </HBox>
          </children></VBox>

@@ -1,0 +1,15 @@
+.all {
+    -fx-background-image: url("nenapi1.jpg");
+}
+
+.textF {
+    -fx-background-color: #04293C;
+    -fx-background-radius: 5px;
+    -fx-background-insets: 0px;
+    -fx-padding: 10px;
+    -fx-text-fill: #bce4f9;
+}
+
+.comboBox {
+    -fx-background-color: #063E5B;
+}

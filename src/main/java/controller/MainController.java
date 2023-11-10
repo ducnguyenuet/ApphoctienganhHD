@@ -1,13 +1,10 @@
 package controller;
-import com.example.dictionaryy.translatorFromAPI;
+import com.example.dictionaryy.*;
 
-import com.example.dictionaryy.AlertBox;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.InputMethodEvent;
 import javafx.scene.media.*;
-import com.example.dictionaryy.Database;
-import com.example.dictionaryy.WordOfDB;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -29,7 +26,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class MainController implements Initializable {
@@ -93,7 +91,7 @@ public class MainController implements Initializable {
         try {
             root = FXMLLoader.load(getClass().getResource(s));
         } catch (IOException e) {
-            e.printStackTrace();
+            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE,null,e);
         }
         defaut.setCenter(root);
     }
@@ -124,8 +122,8 @@ public class MainController implements Initializable {
     }
 
     @FXML
-    public void api(MouseEvent mouseEvent) {
-        loadScene("api_window.fxml");
+    public void api(MouseEvent mouseEvent) throws IOException {
+        loadScene("/com/example/dictionaryy/api_window.fxml");
     }
 
     public void ShowWords(ActionEvent event) {
@@ -287,4 +285,6 @@ public class MainController implements Initializable {
         }
     }
 
+    public void toAPI(InputMethodEvent inputMethodEvent) { loadScene("api_window.fxml");
+    }
 }
