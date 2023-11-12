@@ -1,6 +1,7 @@
 package controller;
 import com.example.dictionaryy.*;
 
+import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.InputMethodEvent;
@@ -20,6 +21,7 @@ import javafx.scene.web.WebView;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.ResourceBundle;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Modality;
@@ -28,6 +30,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import static java.util.Collections.binarySearch;
 
 
 public class MainController implements Initializable {
@@ -66,14 +70,21 @@ public class MainController implements Initializable {
         SearchType.textProperty().addListener((observable, oldValue, newValue) -> {
             Searching(null);
         });
+<<<<<<< HEAD
         wordOutPut.textProperty().addListener((observable, oldValue, newValue) -> {
             Output(null);
         });
+
+=======
+//        wordOutPut.textProperty().addListener((observable, oldValue, newValue) -> {
+//            Output(null);
+//        });
         //apiButton.setOnAction(event -> translateWithAPI(event));
 //        apiIcon.setOnMouseClicked(event -> apiTranslation());
+>>>>>>>9e27c08ac0102b091a2c47f67606a5d77c91e
     }
 
-    @FXML
+    @FXMLz
     public void md(MouseEvent mouseEvent) {
         defaut.setCenter(myDictPane);
     }
@@ -100,19 +111,29 @@ public class MainController implements Initializable {
     {
         Database db = new Database();
         ArrayList<WordOfDB> List = db.getAllWord();
+        int k = List.size();
         db.close();
         String searchText = SearchType.getText().trim().toLowerCase();
         if (!searchText.isEmpty())
         {
             ArrayList<WordOfDB> viewList = new ArrayList<>();
-            for (WordOfDB it:List)
+            //WordOfDB St = new WordOfDB(searchText);
+            int index = binaryStartWith(List,searchText);
+            if (index > 0)
             {
-                if (it.getWord_target().startsWith(searchText))
+                for(int i= index;i<k;i++)
                 {
-                    viewList.add(it);
+                    if(List.get(i).getWord_target().startsWith(searchText))
+                    {
+                        viewList.add(List.get(i));
+                    }
+                    else break;
                 }
+                ViewSearch.setItems(FXCollections.observableArrayList(viewList));
             }
-            ViewSearch.setItems(FXCollections.observableArrayList(viewList));
+            else{
+                ViewSearch.setItems(FXCollections.observableArrayList());
+            }
         }
         else
         {
@@ -287,4 +308,36 @@ public class MainController implements Initializable {
 
     public void toAPI(InputMethodEvent inputMethodEvent) { loadScene("api_window.fxml");
     }
+
+<<<<<<< HEAD
+
+=======
+    private static int binaryStartWith(ArrayList<WordOfDB> List, String St){
+        int low = 0;
+        int high = List.size() -1;
+        int appearFirst = -1;
+
+        while (low<=high)
+        {
+            int mid = (low + high)>>>1;
+            WordOfDB midVal = List.get(mid);
+            int cmp = midVal.getWord_target().compareTo(St);
+
+            if (cmp==0){
+                return mid;
+            }
+            else if (cmp<0){
+                low = mid+1;
+            }
+            else if(cmp>0&&midVal.getWord_target().startsWith(St)){
+                high = mid -1;
+                appearFirst = mid;
+            }
+            else if(cmp>0&&!midVal.getWord_target().startsWith(St)){
+                high = mid -1;
+            }
+        }
+        return appearFirst;
+    }
+>>>>>>> 27f9e27c08ac0102b091a2c47f67606a5d77c91e
 }

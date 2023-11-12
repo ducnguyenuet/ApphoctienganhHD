@@ -84,6 +84,11 @@ public class WordOfDB extends Word {
         word_explain= " ";
     }
 
+    public WordOfDB(String wt)
+    {
+        word_target = wt;
+    }
+
     public WordOfDB(String Time,String wordTarget,String wordExplain,String Audio,String Pronounce,String Type,String Definition,String Example, String Synonyms,String TargetLang)
     {
         time = Time;
