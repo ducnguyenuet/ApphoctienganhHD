@@ -9,13 +9,14 @@ import java.net.URLEncoder;
 
 public class translatorFromAPI {
 
-//    public static void main(String[] args) throws IOException {
-//        String text = "";
-//        //Translated text: Chao the gioi!
-//        System.out.println("Translated text: " + translate("en", "vi", text));
-//    }
+    public static void main(String[] args) throws IOException {
+        String text = "Hello world!";
+        //Translated text: Hallo Welt!
+        System.out.println("Translated text: " + translate("en", "de", text));
+    }
 
     public static String translate(String langFrom, String langTo, String text) throws IOException {
+
         String urlStr = "https://script.google.com/macros/s/AKfycbyaYRBQm5ccKlurvadWYgXbuyHzgA9dVV_8dte2Ij-omziHWmnEiUof6gAzma_Lpwzj/exec" +
                 "?q=" + URLEncoder.encode(text, "UTF-8") +
                 "&target=" + langTo +
