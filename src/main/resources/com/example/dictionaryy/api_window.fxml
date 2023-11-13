@@ -7,6 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.TextArea?>
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="585.0" prefWidth="897.0" styleClass="all" stylesheets="@../../../cssStyle/api.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.APIWindowController">
    <children>
       <VBox alignment="TOP_RIGHT" prefHeight="585.0" prefWidth="450.0">
@@ -17,11 +18,12 @@
                </VBox.margin>
             </ComboBox>
 
-            <TextField fx:id="textField1" onAction="#textField1Changed" prefHeight="158.0" prefWidth="304.0" styleClass="textF" stylesheets="@../../../cssStyle/api.css">
+            <TextArea fx:id="textField1" prefHeight="158.0" prefWidth="304.0" styleClass="textF" stylesheets="@../../../cssStyle/api.css" wrapText="true">
                <VBox.margin>
                   <Insets left="8.0" right="8.0" />
                </VBox.margin>
-            </TextField>
+            </TextArea>
+
             <Button mnemonicParsing="false" fx:id="button" onAction="#buttonTranslateClickedOn" text="Translate" />
 
          </children>
@@ -33,11 +35,11 @@
                   <Insets bottom="10.0" right="8.0" />
                </VBox.margin>
             </ComboBox>
-            <TextField fx:id="textField2" prefHeight="158.0" prefWidth="381.0" stylesheets="@../../../cssStyle/api.css">
+            <TextArea fx:id="textField2" prefHeight="158.0" prefWidth="381.0" stylesheets="@../../../cssStyle/api.css" editable="false" wrapText="true">
                <VBox.margin>
                   <Insets left="8.0" right="8.0" />
                </VBox.margin>
-            </TextField>
+            </TextArea>
 
          </children>
       </VBox>

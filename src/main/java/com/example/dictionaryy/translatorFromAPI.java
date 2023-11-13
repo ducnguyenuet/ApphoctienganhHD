@@ -12,7 +12,7 @@ public class translatorFromAPI {
     public static void main(String[] args) throws IOException {
         String text = "Hello world!";
         //Translated text: Hallo Welt!
-        System.out.println("Translated text: " + translate("en", "de", text));
+        System.out.println("Translated text: " + translate("en", "zu", text));
     }
 
     public static String translate(String langFrom, String langTo, String text) throws IOException {
