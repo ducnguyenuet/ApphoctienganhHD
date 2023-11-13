@@ -3,13 +3,14 @@
 }
 
 .textF {
-    -fx-background-color: #04293C;
+    -fx-background-color: lightBlue;
     -fx-background-radius: 5px;
     -fx-background-insets: 0px;
     -fx-padding: 10px;
-    -fx-text-fill: #bce4f9;
+    -fx-text-fill: black;
 }
 
 .comboBox {
-    -fx-background-color: #FFFFFF;
+    -fx-background-color: lightgray;
+    -fx-text-fill: black;
 }
