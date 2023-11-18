@@ -7,16 +7,10 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
-public class translatorFromAPI {
+public class translatorFromAPI implements APIService {
 
-    public static void main(String[] args) throws IOException {
-        String text = "Hello world!";
-        //Translated text: Hallo Welt!
-        System.out.println("Translated text: " + translate("en", "zu", text));
-    }
-
-    public static String translate(String langFrom, String langTo, String text) throws IOException {
-
+    @Override
+    public String translate(String langFrom, String langTo, String text) throws IOException {
         String urlStr = "https://script.google.com/macros/s/AKfycbyaYRBQm5ccKlurvadWYgXbuyHzgA9dVV_8dte2Ij-omziHWmnEiUof6gAzma_Lpwzj/exec" +
                 "?q=" + URLEncoder.encode(text, "UTF-8") +
                 "&target=" + langTo +
@@ -33,5 +27,4 @@ public class translatorFromAPI {
         in.close();
         return response.toString();
     }
-
 }

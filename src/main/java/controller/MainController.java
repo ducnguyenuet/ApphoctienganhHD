@@ -65,7 +65,7 @@ public class MainController implements Initializable {
     public void initialize(URL url, ResourceBundle defaut) {
         webView = new WebView();
         engine = webView.getEngine();
-        engine.load("https://translate.google.com/?hl=vi");
+        engine.load("https://www.snappywords.com/?lookup=community&fbclid=IwAR1FfI7GTHkVskRtNfdcQKc0P08dcgEUq4DDhHnwBSfIATHCTWdxBhxSSVU");
         SearchType.textProperty().addListener((observable, oldValue, newValue) -> {
             Searching(null);
         });
@@ -85,10 +85,6 @@ public class MainController implements Initializable {
     public void wb(MouseEvent mouseEvent) {
         defaut.setCenter(webView);
     }
-
-    @FXML
-    public void game(MouseEvent mouseEvent) {}
-
     private void loadScene(String s) {
         Parent root = null;
         try {
@@ -327,5 +323,10 @@ public class MainController implements Initializable {
             }
         }
         return appearFirst;
+    }
+
+    @FXML
+    public void game(MouseEvent mouseEvent) throws IOException {
+        loadScene("/com/example/dictionaryy/game.fxml");
     }
 }

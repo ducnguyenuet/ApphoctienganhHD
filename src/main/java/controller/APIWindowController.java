@@ -8,7 +8,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -71,10 +70,11 @@ public class APIWindowController implements Initializable {
 
     public void buttonTranslateClickedOn() throws IOException {
         text = textField1.getText();
+        translatorFromAPI translator = new translatorFromAPI();
         if (langFrom.equals(langTo)) {
             textField2.setText(text);
         } else {
-            String translatedText = translatorFromAPI.translate(langFrom, langTo, text);
+            String translatedText = translator.translate(langFrom, langTo, text);
             textField2.setText(translatedText);
         }
     }
