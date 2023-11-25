@@ -10,73 +10,123 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="div" prefHeight="400.0" prefWidth="600.0" stylesheets="@../../../cssStyle/editStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EditController">
+<AnchorPane id="div" prefHeight="443.0" prefWidth="632.0" stylesheets="@../../../cssStyle/editStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EditController">
    <children>
-      <VBox id="div" layoutY="-1.0" prefHeight="406.0" prefWidth="601.0" stylesheets="@../../../cssStyle/editStyle.css">
+      <VBox id="div" layoutY="-1.0" spacing="20.0" stylesheets="@../../../cssStyle/editStyle.css">
          <children>
-            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="8.0">
+            <HBox alignment="CENTER" spacing="20.0">
+               <VBox.margin>
+                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+               </VBox.margin>
                <children>
-                  <Label alignment="CENTER" prefHeight="63.0" prefWidth="147.0" text="Word_Target" textFill="#08a4d6">
+                  <Label text="Word_Target" textFill="#08a4d6" />
+                  <TextField fx:id="wt" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="25.0">
+               <VBox.margin>
+                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+               </VBox.margin>
+               <children>
+                  <Label prefHeight="27.0" prefWidth="123.0" text="Word_explain" textAlignment="CENTER" textFill="#08a4d6" />
+                  <TextField fx:id="we" prefHeight="39.0" prefWidth="190.0" />
+                  <Label prefHeight="27.0" prefWidth="123.0" text="Audio" textFill="#08a4d6">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
                   </Label>
-                  <TextField fx:id="wt" prefHeight="39.0" prefWidth="167.0" />
-                  <Label alignment="CENTER" prefHeight="27.0" prefWidth="131.0" text="Word_Explain" textFill="#08a4d6" />
-                  <TextField fx:id="we" prefHeight="39.0" prefWidth="196.0" />
+                  <TextField fx:id="ad" prefHeight="39.0" prefWidth="190.0">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </TextField>
                </children>
-               <VBox.margin>
-                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-               </VBox.margin>
             </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="8.0">
-               <children>
-                  <Label alignment="CENTER" prefHeight="27.0" prefWidth="71.0" text="Audio" textAlignment="CENTER" textFill="#08a4d6" />
-                  <TextField fx:id="ad" prefHeight="39.0" prefWidth="116.0" />
-                  <Label alignment="CENTER" text="TargetLang" textFill="#08a4d6" />
-                  <TextField fx:id="tl" prefHeight="39.0" prefWidth="102.0" />
-                  <Label alignment="CENTER" prefHeight="27.0" prefWidth="51.0" text="Type" textFill="#08a4d6" />
-                  <TextField fx:id="tp" prefHeight="39.0" prefWidth="109.0" />
-               </children>
-               <VBox.margin>
-                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-               </VBox.margin>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="8.0">
-               <children>
-                  <Label alignment="CENTER" prefHeight="27.0" prefWidth="109.0" text="Pronounce" textFill="#08a4d6" />
-                  <TextField fx:id="pn" prefHeight="39.0" prefWidth="153.0" />
-                  <Label alignment="CENTER" prefHeight="27.0" prefWidth="92.0" text="Synonyms" textFill="#08a4d6" />
-                  <TextField fx:id="sn" />
-               </children>
-               <VBox.margin>
-                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-               </VBox.margin>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="8.0">
+            <HBox alignment="CENTER_LEFT" spacing="25.0">
                <VBox.margin>
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </VBox.margin>
                <children>
-                  <Label alignment="CENTER" text="Example" textFill="#08a4d6" />
-                  <TextField fx:id="ep" prefHeight="39.0" prefWidth="209.0" />
-                  <Label alignment="CENTER" text="Defination" textFill="#08a4d6" />
-                  <TextField fx:id="df" prefHeight="39.0" prefWidth="198.0" />
+                  <Label prefHeight="27.0" prefWidth="123.0" text="TargetLang" textAlignment="CENTER" textFill="#08a4d6">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="tl" prefHeight="39.0" prefWidth="190.0">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </TextField>
+                  <Label prefHeight="27.0" prefWidth="123.0" text="Type" textFill="#08a4d6">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="tp" prefHeight="39.0" prefWidth="190.0">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </TextField>
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="CENTER_LEFT" spacing="25.0">
                <VBox.margin>
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </VBox.margin>
                <children>
-                  <Button fx:id="okBut" mnemonicParsing="false" onAction="#updateNewWord" style="-fx-background-color: transparent;">
+                  <Label prefHeight="27.0" prefWidth="123.0" text="Pronounce" textAlignment="CENTER" textFill="#08a4d6" />
+                  <TextField fx:id="pn" prefHeight="39.0" prefWidth="190.0">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </TextField>
+                  <Label prefHeight="27.0" prefWidth="123.0" text="Synonyms" textFill="#08a4d6">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="sn" prefHeight="39.0" prefWidth="190.0">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="25.0">
+               <children>
+                  <Label prefHeight="27.0" prefWidth="123.0" text="  Example" textFill="#08a4d6">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="ep" prefHeight="39.0" prefWidth="190.0">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <Label prefHeight="27.0" prefWidth="123.0" text="Defination" textFill="#08a4d6">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="df" prefHeight="39.0" prefWidth="190.0">
+                     <HBox.margin>
+                        <Insets left="2.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER">
+               <children>
+                  <Button fx:id="okBut" mnemonicParsing="false" onAction="#updateNewWord" prefHeight="66.0" prefWidth="78.0" style="-fx-background-color: transparent;">
                      <graphic>
                         <ImageView fitHeight="54.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../image/check.png" />
                            </image>
                         </ImageView>
-                     </graphic></Button>
+                     </graphic>
+                  </Button>
                </children>
             </HBox>
          </children></VBox>

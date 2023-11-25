@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="quizBackground" stylesheets="@../../../cssStyle/game.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Quiz2Controller">
+   <children>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Label fx:id="exp" text="label">
+               <font>
+                  <Font size="45.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" prefHeight="135.0" prefWidth="600.0" spacing="50.0">
+         <children>
+            <Button fx:id="ans1" contentDisplay="CENTER" mnemonicParsing="false" onAction="#choose" prefHeight="140.0" prefWidth="188.0" style="-fx-background-color: transparent;" text="button" textAlignment="CENTER">
+               <HBox.margin>
+                  <Insets left="90.0" />
+               </HBox.margin>
+               <graphic>
+                  <ImageView fitHeight="140.0" fitWidth="188.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../image/cloudchossing.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="ans2" contentDisplay="CENTER" mnemonicParsing="false" onAction="#choose" prefHeight="140.0" prefWidth="188.0" style="-fx-background-color: transparent;" text="Button" textAlignment="CENTER">
+               <graphic>
+                  <ImageView fitHeight="140.0" fitWidth="188.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../image/cloudchossing.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" prefHeight="135.0" prefWidth="600.0" spacing="50.0">
+         <children>
+            <Button fx:id="ans3" contentDisplay="CENTER" mnemonicParsing="false" onAction="#choose" prefHeight="140.0" prefWidth="188.0" style="-fx-background-color: transparent;" text="button" textAlignment="CENTER">
+               <graphic>
+                  <ImageView fitHeight="140.0" fitWidth="188.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../image/cloudchossing.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <HBox.margin>
+                  <Insets left="90.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="ans4" contentDisplay="CENTER" mnemonicParsing="false" onAction="#choose" prefHeight="140.0" prefWidth="188.0" style="-fx-background-color: transparent;" text="Button" textAlignment="CENTER">
+               <graphic>
+                  <ImageView fitHeight="140.0" fitWidth="188.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../image/cloudchossing.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</VBox>

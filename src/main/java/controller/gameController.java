@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import javafx.animation.Animation;
@@ -181,12 +182,13 @@ public class gameController extends Application {
         ds1.setOffsetY(4.0f);
         ds1.setOffsetX(4.0f);
         ds1.setColor(Color.BLACK);
-
-        Image img=new Image("C:\\Users\\tt\\Documents\\GitHub\\ApphoctienganhHD\\src\\main\\resources\\image\\birdFrame0.png");
+        File file = new File("src/main/resources/image/birdFrame0.png");
+        Image img = new Image(file.toURI().toString());
+        //Image img=new Image("image/birdFrame0.png");
         ImagePattern ip=new ImagePattern(img);
 
-
-        cloud=new Image("C:\\Users\\tt\\Documents\\GitHub\\ApphoctienganhHD\\src\\main\\resources\\image\\cloud.png");
+        File file2 = new File("src/main/resources/image/cloud.png");
+        cloud=new Image(file2.toURI().toString());
         cloudv=new ImageView(cloud);
         X=W+(int)cloud.getWidth();
         cloudv.setX(X);

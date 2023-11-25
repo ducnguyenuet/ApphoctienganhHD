@@ -1,0 +1,11 @@
+.background {
+    -fx-background-image: url("startbackground.jpg");
+    -fx-background-repeat: stretch;
+    -fx-background-size: cover;
+}
+
+.quizBackground {
+    -fx-background-image: url("quizbackground.jpg");
+    -fx-background-repeat: stretch;
+    -fx-background-size: cover;
+}
