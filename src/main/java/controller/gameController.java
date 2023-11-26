@@ -235,15 +235,15 @@ public class gameController extends Application {
         ds1.setOffsetY(4.0f);
         ds1.setOffsetX(4.0f);
         ds1.setColor(Color.BLACK);
-<<<<<<< HEAD
+
 
         //shadow for button
         DropShadow ds2 = new DropShadow();
-<<<<<<< Updated upstream
+
         ds1.setOffsetY(4.0f);
         ds1.setOffsetX(4.0f);
         ds1.setColor(Color.BLACK);
-=======
+
         ds2.setOffsetY(4.0f);
         ds2.setOffsetX(4.0f);
         ds2.setColor(Color.DARKGREY);
@@ -255,18 +255,17 @@ public class gameController extends Application {
         cloud = new Image(file2.toURI().toString());
         cloudv = new ImageView(cloud);
         X = W + (int)cloud.getWidth();
-=======
->>>>>>> Stashed changes
-        File file = new File("src/main/resources/image/birdFrame0.png");
-        Image img = new Image(file.toURI().toString());
-        //Image img=new Image("image/birdFrame0.png");
-        ImagePattern ip=new ImagePattern(img);
 
-        File file2 = new File("src/main/resources/image/cloud.png");
+        file = new File("src/main/resources/image/birdFrame0.png");
+        img = new Image(file.toURI().toString());
+        //Image img=new Image("image/birdFrame0.png");
+        ip = new ImagePattern(img);
+
+        file2 = new File("src/main/resources/image/cloud.png");
         cloud=new Image(file2.toURI().toString());
         cloudv=new ImageView(cloud);
         X=W+(int)cloud.getWidth();
->>>>>>> 9b709a508e0b81c3c95e5e7cdb220164577e2508
+
         cloudv.setX(X);
         Y = 10 + (int)(Math.random() * 100);
         cloudv.setY(Y);
