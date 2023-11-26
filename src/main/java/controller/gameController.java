@@ -148,6 +148,7 @@ public class gameController extends Application {
         }
     }
 
+
     void reStart() {
         initializeGame();
         displayStartMessage();
