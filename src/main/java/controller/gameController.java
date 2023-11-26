@@ -148,6 +148,7 @@ public class gameController extends Application {
         }
     }
 
+    @FXML
     void reStart() {
         initializeGame();
         displayStartMessage();

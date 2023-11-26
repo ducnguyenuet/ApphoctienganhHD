@@ -9,9 +9,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="592.0" prefWidth="892.0" styleClass="background" stylesheets="@../../../cssStyle/game.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.gameController">
     <children>
-        <Button fx:id="startButton" layoutX="358.0" layoutY="486.0" onAction="#start1" prefHeight="39.0" prefWidth="182.0" style="-fx-background-color: #FDFEFE; -fx-background-radius: 35%;" text="START" textFill="#da4412">
-         <font>
-            <Font size="29.0" />
-         </font></Button>
+        <Button fx:id="startButton" layoutX="358.0" layoutY="486.0" onAction="#startButtonClicked" prefHeight="39.0" prefWidth="182.0" style="-fx-background-color: #FDFEFE; -fx-background-radius: 35%;" text="START" textFill="#da4412">
+            <font>
+                <Font size="29.0" />
+            </font></Button>
     </children>
 </AnchorPane>
