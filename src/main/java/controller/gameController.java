@@ -129,7 +129,6 @@ public class gameController extends Application {
         if(gameOver) {
             //remainingLives--;
             //initializeHearts(2);
-
             bird.setCenterY(H - 120 - bird.getRadiusY());
             l.setText("Game Over\n   Score: " + str.toString(score / 2));
             l.setFont(new Font("Arial",50));
