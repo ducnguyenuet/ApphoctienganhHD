@@ -15,7 +15,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
-import javafx.scene.control.TextField;
 import javafx.util.Pair;
 
 public class APIWindowController implements Initializable {
@@ -37,9 +36,6 @@ public class APIWindowController implements Initializable {
 
     @FXML
     private Button button;
-
-    @FXML
-    private TextField searchTextField;
 
     private ObservableList<String> languageList;
     private Map<String, String> languageMap;
@@ -109,6 +105,4 @@ public class APIWindowController implements Initializable {
             languageMap.put(pair.getKey(), pair.getValue());
         }
     }
-
-
 }
