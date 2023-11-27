@@ -139,31 +139,6 @@ public class gameController extends Application {
         if(bird.getCenterY() > H - 95 || bird.getCenterY() < 0) {
             gameOver = true;
         }
-
-        if(gameOver) {
-
-            bird.setCenterY(H - 95 - bird.getRadiusY());
-            if (remainingLives > 0) {
-                l.setText("Try Again ?\n   Score: " + str.toString(score / 2));
-                l.setFont(Font.font(customFont.getFamily(), 50));
-                l.setLayoutX(primaryStage.getWidth() / 2 - 95);
-                l.setLayoutY(primaryStage.getHeight() / 2 - 50);
-                l.setTextFill(Color.RED);
-            } else {
-                Image overImage = new Image(new File("src/main/resources/image/bgOver.png").toURI().toString());
-                ImageView overBackground = new ImageView(overImage);
-                overBackground.setFitWidth(W);
-                overBackground.setFitHeight(H);
-                root.getChildren().addAll(overBackground);
-
-                Label lo = new Label();
-                lo.setText("Game Over\n   Score: " + str.toString(score / 2));
-                lo.setFont(Font.font(customFont.getFamily(), 42));
-                lo.setLayoutX(primaryStage.getWidth() / 2 - 95);
-                lo.setLayoutY(primaryStage.getHeight() / 2 - 125);
-                lo.setTextFill(Color.RED);
-                root.getChildren().addAll(lo);
-        }}
     }
 
     void Jump() {
@@ -348,15 +323,6 @@ public class gameController extends Application {
 
         gameOver = false;
 
-        bton = new Button();
-        bton.setText("Restart");
-        bton.setTranslateX(400);
-        bton.setTranslateY(380);
-        bton.setPrefSize(100,50);
-        bton.setTextFill(Color.BLUE);
-        bton.setFont(customFont);
-        bton.setEffect(ds2);
-
         KeyFrame kf1 = new KeyFrame(Duration.millis(20), e -> {
 
             ticks++;
@@ -382,10 +348,46 @@ public class gameController extends Application {
 //                MediaPlayer overMediaPlayer = new MediaPlayer(overSound);
 //                overMediaPlayer.play();
 
-                if (!(root.getChildren().contains(l))) {
-                    root.getChildren().addAll(l, bton);
-                }
-                bton.setOnMouseClicked(k -> {
+                bird.setCenterY(H - 95 - bird.getRadiusY());
+
+                if (remainingLives <= 0) {
+                    Image overImage = new Image(new File("src/main/resources/image/bgOver.png").toURI().toString());
+                    ImageView overBackground = new ImageView(overImage);
+                    overBackground.setFitWidth(W);
+                    overBackground.setFitHeight(H);
+                    root.getChildren().addAll(overBackground);
+
+                    Label lo = new Label();
+                    lo.setText("Game Over\n   Score: " + str.toString(score / 2));
+                    lo.setFont(Font.font(customFont.getFamily(), 42));
+                    lo.setLayoutX(primaryStage.getWidth() / 2 - 95);
+                    lo.setLayoutY(primaryStage.getHeight() / 2 - 125);
+                    lo.setTextFill(Color.RED);
+
+                    bton = new Button();
+                    bton.setText("Restart");
+                    bton.setTranslateX(400);
+                    bton.setTranslateY(380);
+                    bton.setPrefSize(100,50);
+                    bton.setTextFill(Color.BLUE);
+                    bton.setFont(customFont);
+                    bton.setEffect(ds2);
+
+                    if (!(root.getChildren().contains(lo))) {
+                        root.getChildren().addAll(lo, bton);
+                    }
+
+                    bton.setOnMouseClicked(k -> {
+                        root.getChildren().remove(overBackground);
+                        root.getChildren().remove(lo);
+                        root.getChildren().remove(heart3);
+                        root.getChildren().remove(heart2);
+                        root.getChildren().remove(heart1);
+                        remainingLives = 3;
+                        initializeHearts(remainingLives);
+                        reStart();
+                    });
+                } else {
                     root.getChildren().remove(l);
                     root.getChildren().remove(heart3);
                     root.getChildren().remove(heart2);
@@ -393,7 +395,7 @@ public class gameController extends Application {
                     remainingLives--;
                     initializeHearts(remainingLives);
                     reStart();
-                });
+                }
             }
         });
 
