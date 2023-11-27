@@ -120,64 +120,6 @@ public class gameController extends Application {
 
     boolean gameOverSoundPlayed = false;
 
-//    void Collision() {
-//        for (Rectangle barrier : barriers) {
-//            if ((barrier.getBoundsInParent().intersects(bird.getBoundsInParent()))) {
-//                gameOver = true;
-//                if (bird.getCenterX() <= barrier.getX()) {
-//                    bird.setCenterX(barrier.getX() - 2 * bird.getRadiusX() + 10);
-//                } else {
-//                    if (barrier.getY() != 0) {
-//                        bird.setCenterY(barrier.getY() - 2 * bird.getRadiusY());
-//                    } else if (bird.getCenterY() > barrier.getHeight()) {
-//                        bird.setCenterY(barrier.getHeight());
-//                    }
-//                }
-//            }
-//        }
-//
-//        if(bird.getCenterY() > H - 95 || bird.getCenterY() < 0) {
-//            gameOver = true;
-//        }
-//
-//        if(gameOver) {
-//
-//            //remainingLives--;
-//            //initializeHearts(2);
-//            bird.setCenterY(H - 120 - bird.getRadiusY());
-//            l.setText("Game Over\n   Score: " + str.toString(score / 2));
-//            l.setFont(new Font("Arial",50));
-//            l.setLayoutX(primaryStage.getWidth() / 2 - 130);
-//            l.setLayoutY(primaryStage.getHeight() / 2 - 50);
-//            l.setTextFill(Color.RED);
-//        }
-//
-//
-//            bird.setCenterY(H - 95 - bird.getRadiusY());
-//            if (remainingLives > 0) {
-//                l.setText("Try Again ?\n   Score: " + str.toString(score / 2));
-//                l.setFont(Font.font(customFont.getFamily(), 50));
-//                l.setLayoutX(primaryStage.getWidth() / 2 - 95);
-//                l.setLayoutY(primaryStage.getHeight() / 2 - 50);
-//                l.setTextFill(Color.RED);
-//            } else {
-//                Image overImage = new Image(new File("src/main/resources/image/bgOver.png").toURI().toString());
-//                ImageView overBackground = new ImageView(overImage);
-//                overBackground.setFitWidth(W);
-//                overBackground.setFitHeight(H);
-//                root.getChildren().addAll(overBackground);
-//
-//                Label lo = new Label();
-//                lo.setText("Game Over\n   Score: " + str.toString(score / 2));
-//                lo.setFont(Font.font(customFont.getFamily(), 42));
-//                lo.setLayoutX(primaryStage.getWidth() / 2 - 95);
-//                lo.setLayoutY(primaryStage.getHeight() / 2 - 125);
-//                lo.setTextFill(Color.RED);
-//                root.getChildren().addAll(lo);
-//        }
-//
-//    }
-
     void Collision() {
         for (Rectangle barrier : barriers) {
             if ((barrier.getBoundsInParent().intersects(bird.getBoundsInParent()))) {
@@ -195,22 +137,23 @@ public class gameController extends Application {
         }
 
 
-        if(bird.getCenterY() > H - 120 || bird.getCenterY() < 0) {
-            if(bird.getCenterY() > H - 95 || bird.getCenterY() < 0) {
-                gameOver = true;
-            }
+        if(bird.getCenterY() > H - 95 || bird.getCenterY() < 0) {
+            gameOver = true;
+        }
 
-            if(gameOver) {
-                //remainingLives--;
-                //initializeHearts(2);
+        if(gameOver) {
 
-                bird.setCenterY(H - 120 - bird.getRadiusY());
-                l.setText("Game Over\n   Score: " + str.toString(score / 2));
-                l.setFont(new Font("Arial",50));
-                l.setLayoutX(primaryStage.getWidth() / 2 - 130);
-                l.setLayoutY(primaryStage.getHeight() / 2 - 50);
-                l.setTextFill(Color.RED);
-            }
+            //remainingLives--;
+            //initializeHearts(2);
+
+            bird.setCenterY(H - 120 - bird.getRadiusY());
+            l.setText("Game Over\n   Score: " + str.toString(score / 2));
+            l.setFont(new Font("Arial",50));
+            l.setLayoutX(primaryStage.getWidth() / 2 - 130);
+            l.setLayoutY(primaryStage.getHeight() / 2 - 50);
+            l.setTextFill(Color.RED);
+        }
+
 
             bird.setCenterY(H - 95 - bird.getRadiusY());
             if (remainingLives > 0) {
@@ -233,9 +176,13 @@ public class gameController extends Application {
                 lo.setLayoutY(primaryStage.getHeight() / 2 - 125);
                 lo.setTextFill(Color.RED);
                 root.getChildren().addAll(lo);
+
             }}
 
-    }
+
+
+
+
 
 
     void Jump() {
