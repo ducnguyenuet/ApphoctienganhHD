@@ -378,9 +378,9 @@ public class gameController extends Application {
             Collision();
 
             if (gameOver) {
-                Media overSound = new Media(new File("src/main/resources/sound/over.mp3").toURI().toString());
-                MediaPlayer overMediaPlayer = new MediaPlayer(overSound);
-                overMediaPlayer.play();
+//                Media overSound = new Media(new File("src/main/resources/sound/over.mp3").toURI().toString());
+//                MediaPlayer overMediaPlayer = new MediaPlayer(overSound);
+//                overMediaPlayer.play();
 
                 if (!(root.getChildren().contains(l))) {
                     root.getChildren().addAll(l, bton);
