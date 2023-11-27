@@ -12,6 +12,7 @@
    <children>
       <VBox alignment="TOP_RIGHT" prefHeight="585.0" prefWidth="450.0">
          <children>
+
             <ComboBox fx:id="comboBox1" onAction="#comboBox1Changed" prefWidth="150.0" styleClass="comboBox" stylesheets="@../../../cssStyle/api.css">
                <VBox.margin>
                   <Insets bottom="10.0" right="8.0" />
