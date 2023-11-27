@@ -12,18 +12,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
-import javafx.scene.text.FontWeight;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.ResourceBundle;
 import javafx.fxml.FXMLLoader;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -130,10 +125,7 @@ public class MainController implements Initializable {
         }
     }
 
-    @FXML
-    public void api(MouseEvent mouseEvent) throws IOException {
-        loadScene("/com/example/dictionaryy/api_window.fxml");
-    }
+
 
     public void ShowWords(ActionEvent event) {
         Database db = new Database();
@@ -294,8 +286,8 @@ public class MainController implements Initializable {
         }
     }
 
-    public void toAPI(InputMethodEvent inputMethodEvent) { loadScene("api_window.fxml");
-    }
+//    public void toAPI(InputMethodEvent inputMethodEvent) { loadScene("api_window.fxml");
+//    }
 
     private static int binaryStartWith(ArrayList<WordOfDB> List, String St){
         int low = 0;
@@ -328,5 +320,14 @@ public class MainController implements Initializable {
     @FXML
     public void game(MouseEvent mouseEvent) throws IOException {
         loadScene("/com/example/dictionaryy/game.fxml");
+    }
+
+    @FXML
+    public void api(MouseEvent mouseEvent) throws IOException {
+        loadScene("/com/example/dictionaryy/api_window.fxml");
+    }
+
+    public void tomess(MouseEvent mouseEvent) {
+        loadScene("/com/example/dictionaryy/WordChain.fxml");
     }
 }

@@ -42,7 +42,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button mnemonicParsing="false" onMouseClicked="#api" prefHeight="67.0" prefWidth="86.0" styleClass="buttonMenu" stylesheets="@../../../cssStyle/main.css">
+            <Button contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#api" prefHeight="67.0" prefWidth="86.0" styleClass="buttonMenu" stylesheets="@../../../cssStyle/main.css">
                <graphic>
                   <ImageView fitHeight="46.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -50,6 +50,15 @@
                      </image>
                   </ImageView>
                </graphic></Button>
+            <Button contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#tomess" prefHeight="67.0" prefWidth="86.0" styleClass="buttonMenu" stylesheets="@../../../cssStyle/main.css">
+               <graphic>
+                  <ImageView fitHeight="46.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../image/messenger.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </VBox>
    </left>
