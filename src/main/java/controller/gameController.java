@@ -135,25 +135,11 @@ public class gameController extends Application {
                 }
             }
         }
-
-
-        if(bird.getCenterY() > H - 95 || bird.getCenterY() < 0) {
-            gameOver = true;
-        }
-
-        if(gameOver) {
-
-            //remainingLives--;
-            //initializeHearts(2);
-
-            bird.setCenterY(H - 120 - bird.getRadiusY());
-            l.setText("Game Over\n   Score: " + str.toString(score / 2));
-            l.setFont(new Font("Arial",50));
-            l.setLayoutX(primaryStage.getWidth() / 2 - 130);
-            l.setLayoutY(primaryStage.getHeight() / 2 - 50);
-            l.setTextFill(Color.RED);
-        }
-
+        if(bird.getCenterY() > H - 120 || bird.getCenterY() < 0) {
+            if(bird.getCenterY() > H - 95 || bird.getCenterY() < 0) {
+                gameOver = true;
+            }
+            if(gameOver) {
 
             bird.setCenterY(H - 95 - bird.getRadiusY());
             if (remainingLives > 0) {
@@ -168,7 +154,6 @@ public class gameController extends Application {
                 overBackground.setFitWidth(W);
                 overBackground.setFitHeight(H);
                 root.getChildren().addAll(overBackground);
-
                 Label lo = new Label();
                 lo.setText("Game Over\n   Score: " + str.toString(score / 2));
                 lo.setFont(Font.font(customFont.getFamily(), 42));
@@ -176,9 +161,8 @@ public class gameController extends Application {
                 lo.setLayoutY(primaryStage.getHeight() / 2 - 125);
                 lo.setTextFill(Color.RED);
                 root.getChildren().addAll(lo);
-
             }}
-
+    }}
 
 
 
