@@ -363,6 +363,7 @@ public class gameController extends Application {
                         //score = 0;
                         root.getChildren().remove(overBackground); // Xóa background 'bgOver.png'
                         root.getChildren().remove(l);
+                        root.getChildren().remove(lo);
                         root.getChildren().remove(heart3);
                         root.getChildren().remove(heart2);
                         root.getChildren().remove(heart1);
