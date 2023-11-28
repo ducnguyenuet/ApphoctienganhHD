@@ -57,7 +57,7 @@ public class gameController extends Application {
     Image cloud;
     ImageView cloudv;
     int X,Y;
-    DropShadow ds1;
+    //DropShadow ds1;
     int remainingLives = 3;
     ImageView heart1, heart2, heart3;
     AnchorPane windowGame = new AnchorPane();
@@ -69,6 +69,7 @@ public class gameController extends Application {
     Media themeSong = new Media(new File("src/main/resources/sound/themeSong.mp3").toURI().toString());
     MediaPlayer mediaPlayer = new MediaPlayer(themeSong);
 
+    //Hien thi trai tim
     private void initializeHearts(int remainingHearts) {
         if (remainingHearts >= 0) {
             heart1 = new ImageView(new Image(new File("src/main/resources/image/heart00.png").toURI().toString()));
@@ -109,8 +110,9 @@ public class gameController extends Application {
         }
     }
 
+    //Them chuong ngai vat
     void addBarrier() {
-        int space = 300;
+        int space = 280;
         int width = 100;
         int height = 50 + (int)(Math.random() * 200);
 
@@ -120,6 +122,7 @@ public class gameController extends Application {
 
     boolean gameOverSoundPlayed = false;
 
+    //Xu li va cham
     void Collision() {
         for (Rectangle barrier : barriers) {
             if ((barrier.getBoundsInParent().intersects(bird.getBoundsInParent()))) {
@@ -135,40 +138,12 @@ public class gameController extends Application {
                 }
             }
         }
-        if(bird.getCenterY() > H - 120 || bird.getCenterY() < 0) {
             if(bird.getCenterY() > H - 95 || bird.getCenterY() < 0) {
                 gameOver = true;
             }
-            if(gameOver) {
+    }
 
-            bird.setCenterY(H - 95 - bird.getRadiusY());
-            if (remainingLives > 0) {
-                l.setText("Try Again ?\n   Score: " + str.toString(score / 2));
-                l.setFont(Font.font(customFont.getFamily(), 50));
-                l.setLayoutX(primaryStage.getWidth() / 2 - 95);
-                l.setLayoutY(primaryStage.getHeight() / 2 - 50);
-                l.setTextFill(Color.RED);
-            } else {
-                Image overImage = new Image(new File("src/main/resources/image/bgOver.png").toURI().toString());
-                ImageView overBackground = new ImageView(overImage);
-                overBackground.setFitWidth(W);
-                overBackground.setFitHeight(H);
-                root.getChildren().addAll(overBackground);
-                Label lo = new Label();
-                lo.setText("Game Over\n   Score: " + str.toString(score / 2));
-                lo.setFont(Font.font(customFont.getFamily(), 42));
-                lo.setLayoutX(primaryStage.getWidth() / 2 - 95);
-                lo.setLayoutY(primaryStage.getHeight() / 2 - 125);
-                lo.setTextFill(Color.RED);
-                root.getChildren().addAll(lo);
-            }}
-    }}
-
-
-
-
-
-
+    //Nhay
     void Jump() {
         if(!gameOver) {
             if(yToaDo > 0) {
@@ -179,7 +154,7 @@ public class gameController extends Application {
     }
 
 
-    void reStart() {
+    void start1() {
         initializeGame();
         displayStartMessage();
         handleKeyPressToStart();
@@ -230,7 +205,8 @@ public class gameController extends Application {
         l2.setLayoutY(centerY);
 
         tm.pause();
-        root.getChildren().add(l2);
+        if (!root.getChildren().contains(l2)) {
+        root.getChildren().add(l2); }
     }
 
     void handleKeyPressToStart() {
@@ -278,9 +254,6 @@ public class gameController extends Application {
 
         root.getChildren().addAll(background1, background2);
 
-        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE); // Đặt vòng lặp vô hạn
-        mediaPlayer.play();
-
         // Tạo hiệu ứng di chuyển liền mạch
         Timeline timeline = new Timeline(
                 new KeyFrame(Duration.ZERO, new KeyValue(background1.translateXProperty(), 0), new KeyValue(background2.translateXProperty(), W)),
@@ -289,59 +262,40 @@ public class gameController extends Application {
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
 
-
+        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE); // Đặt vòng lặp vô hạn
+        mediaPlayer.play();
 
         initializeHearts(3);
 
-        //Shadow for bird
-//        DropShadow ds1 = new DropShadow();
-//        ds1.setOffsetY(4.0f);
-//        ds1.setOffsetX(4.0f);
-//        ds1.setOffsetX(4.0f);
-//        ds1.setColor(Color.BLACK);
-
-
         //shadow for button
         DropShadow ds2 = new DropShadow();
-
         ds2.setOffsetY(4.0f);
         ds2.setOffsetX(4.0f);
         ds2.setColor(Color.DARKGREY);
 
+
+        //Hien thi bird
         File file = new File("src/main/resources/image/birdNew.png");
         Image img = new Image(file.toURI().toString());
         ImagePattern ip = new ImagePattern(img);
-
-        img = new Image(file.toURI().toString());
-        ip = new ImagePattern(img);
-
-
         bird = new Ellipse();
         bird.setFill(ip);
         bird.setRadiusX((img.getWidth() / 2) + 2);
         bird.setRadiusY((img.getHeight() / 2) + 2);
         bird.setCenterX(W / 2 - 10);
         bird.setCenterY(H / 2 - 10);
-        bird.setEffect(ds1);
+        //bird.setEffect(ds1);
 
         index = 0;
         yToaDo = 0;
 
         str = new IntegerStringConverter();
 
+        //Các nhãn
         l = new Label();
         l2 = new Label();
         scorelabel = new Label();
-
         scorelabel.setFont(Font.font(customFont.getFamily(), 30));
-
-        ld = new LinearGradient(0.0, 0.0, 1.0, 0.0, true,
-                CycleMethod.NO_CYCLE,
-                new Stop(0.0, Color.web("#2ECC71")),
-                new Stop(0.9, Color.web("#27AE60")),
-                new Stop(1.0, Color.BLACK));
-
-        barriers = new ArrayList<Rectangle>();
 
         ground = new Rectangle(0,H - 95,W,120);
         ground.setFill(Color.TRANSPARENT);
@@ -350,6 +304,20 @@ public class gameController extends Application {
         tm.setCycleCount(Animation.INDEFINITE);
 
         gameOver = false;
+
+        bton = new Button();
+        bton.setText("Restart");
+        bton.setTranslateX(400);
+        bton.setTranslateY(470);
+        bton.setPrefSize(100,40);
+        bton.setTextFill(Color.BLUE);
+        bton.setFont(customFont);
+        bton.setEffect(ds2);
+
+        Image overImage = new Image(new File("src/main/resources/image/bgOver.png").toURI().toString());
+        ImageView overBackground = new ImageView(overImage);
+        overBackground.setFitWidth(W);
+        overBackground.setFitHeight(H);
 
         KeyFrame kf1 = new KeyFrame(Duration.millis(20), e -> {
 
@@ -364,7 +332,7 @@ public class gameController extends Application {
 
             scene.setOnKeyReleased(k -> {
                 String code = k.getCode().toString();
-                if(code=="UP" || code.equals("SPACE")) {
+                if(code.equals("UP") || code.equals("SPACE")) {
                     Jump();
                 }
             });
@@ -372,17 +340,12 @@ public class gameController extends Application {
             Collision();
 
             if (gameOver) {
-//                Media overSound = new Media(new File("src/main/resources/sound/over.mp3").toURI().toString());
-//                MediaPlayer overMediaPlayer = new MediaPlayer(overSound);
-//                overMediaPlayer.play();
 
                 bird.setCenterY(H - 95 - bird.getRadiusY());
 
                 if (remainingLives <= 0) {
-                    Image overImage = new Image(new File("src/main/resources/image/bgOver.png").toURI().toString());
-                    ImageView overBackground = new ImageView(overImage);
-                    overBackground.setFitWidth(W);
-                    overBackground.setFitHeight(H);
+
+
                     root.getChildren().addAll(overBackground);
 
                     Label lo = new Label();
@@ -392,28 +355,20 @@ public class gameController extends Application {
                     lo.setLayoutY(primaryStage.getHeight() / 2 - 125);
                     lo.setTextFill(Color.RED);
 
-                    bton = new Button();
-                    bton.setText("Restart");
-                    bton.setTranslateX(400);
-                    bton.setTranslateY(380);
-                    bton.setPrefSize(100,50);
-                    bton.setTextFill(Color.BLUE);
-                    bton.setFont(customFont);
-                    bton.setEffect(ds2);
-
                     if (!(root.getChildren().contains(lo))) {
                         root.getChildren().addAll(lo, bton);
                     }
 
                     bton.setOnMouseClicked(k -> {
-                        root.getChildren().remove(overBackground);
-                        root.getChildren().remove(lo);
+                        //score = 0;
+                        root.getChildren().remove(overBackground); // Xóa background 'bgOver.png'
+                        root.getChildren().remove(l);
                         root.getChildren().remove(heart3);
                         root.getChildren().remove(heart2);
                         root.getChildren().remove(heart1);
                         remainingLives = 3;
                         initializeHearts(remainingLives);
-                        reStart();
+                        start1();
                     });
                 } else {
                     root.getChildren().remove(l);
@@ -422,18 +377,27 @@ public class gameController extends Application {
                     root.getChildren().remove(heart1);
                     remainingLives--;
                     initializeHearts(remainingLives);
-                    reStart();
+                    start1();
                 }
             }
         });
 
+        //Thiet ke chuong ngai vat
+        ld = new LinearGradient(0.0, 0.0, 1.0, 0.0, true,
+                CycleMethod.NO_CYCLE,
+                new Stop(0.0, Color.web("#2ECC71")),
+                new Stop(0.9, Color.web("#27AE60")),
+                new Stop(1.0, Color.BLACK));
+
+        barriers = new ArrayList<Rectangle>();
+
+        //Xu li chuong ngai vat
         KeyFrame kf2 = new KeyFrame(Duration.millis(20), e -> {
 
             for(int i = 0; i < barriers.size(); ++i) {
 
                 Rectangle barrier = barriers.get(i);
                 barrier.setFill(ld);
-                barrier.setEffect(ds1);
                 barrier.setX((barrier.getX() - 5));
 
                 if(barrier.getY() == 0 && bird.getCenterX() + bird.getRadiusX() > barrier.getX() + barrier.getWidth() / 2 - 5
@@ -461,14 +425,13 @@ public class gameController extends Application {
 
         tm.getKeyFrames().addAll(kf1,kf2);
 
-        //root.getChildren().add(cloudv);
         root.getChildren().addAll(scorelabel);
         root.getChildren().add(ground);
         root.getChildren().add(bird);
 
         scene = new Scene(root);
         scene.setFill(Color.LIGHTBLUE);
-        reStart();
+        start1();
 
         primaryStage.setScene(scene);
         primaryStage.setHeight(H);
@@ -478,8 +441,7 @@ public class gameController extends Application {
 
     @FXML
     void startButtonClicked(ActionEvent event) {
-        start(primaryStage); // Gọi đến phương thức start() với primaryStage hoặc stage cần thiết
-
+        start(primaryStage); // Gọi đến phương thức start() với primaryStage
     }
 
     public static void main(String[] args) {
