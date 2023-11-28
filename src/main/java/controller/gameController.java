@@ -149,7 +149,7 @@ public class gameController extends Application {
             if(yToaDo > 0) {
                 yToaDo = 0;
             }
-            yToaDo = yToaDo - 8;
+            yToaDo = yToaDo - 7.25;
         }
     }
 
@@ -165,7 +165,7 @@ public class gameController extends Application {
         bird.setCenterY(H / 2 - 10);
         gameOver = false;
         yToaDo = 0;
-        score = 0;
+        //score = 0;
         scorelabel.setText("  Score: " + str.toString(score));
         root.getChildren().remove(bton);
         root.getChildren().removeAll(barriers);
@@ -319,6 +319,16 @@ public class gameController extends Application {
         overBackground.setFitWidth(W);
         overBackground.setFitHeight(H);
 
+        Label lo = new Label();
+        lo.setText("Game Over\n   Score: " + str.toString(score / 2));
+        lo.setFont(Font.font(customFont.getFamily(), 42));
+        lo.setLayoutX(primaryStage.getWidth() / 2 - 95);
+        lo.setLayoutY(primaryStage.getHeight() / 2 - 125);
+        lo.setTextFill(Color.RED);
+
+        Media overSound = new Media(new File("src/main/resources/sound/over.mp3").toURI().toString());
+        MediaPlayer overMediaPlayer = new MediaPlayer(overSound);
+
         KeyFrame kf1 = new KeyFrame(Duration.millis(20), e -> {
 
             ticks++;
@@ -340,24 +350,28 @@ public class gameController extends Application {
             Collision();
 
             if (gameOver) {
+                overMediaPlayer.stop();
+                overMediaPlayer.play();
+            }
+
+            if (gameOver) {
 
                 bird.setCenterY(H - 95 - bird.getRadiusY());
 
                 if (remainingLives <= 0) {
 
-
-                    root.getChildren().addAll(overBackground);
-
-                    Label lo = new Label();
-                    lo.setText("Game Over\n   Score: " + str.toString(score / 2));
-                    lo.setFont(Font.font(customFont.getFamily(), 42));
-                    lo.setLayoutX(primaryStage.getWidth() / 2 - 95);
-                    lo.setLayoutY(primaryStage.getHeight() / 2 - 125);
-                    lo.setTextFill(Color.RED);
+                    //score = 0;
+                    if (!root.getChildren().contains(overBackground)) {
+                        root.getChildren().addAll(overBackground);
+                    }
 
                     if (!(root.getChildren().contains(lo))) {
                         root.getChildren().addAll(lo, bton);
                     }
+
+//                    if (!(root.getChildren().contains(bton))) {
+//                        root.getChildren().addAll(bton);
+//                    }
 
                     bton.setOnMouseClicked(k -> {
                         //score = 0;
