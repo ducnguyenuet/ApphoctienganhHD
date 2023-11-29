@@ -111,6 +111,7 @@ public class WordOfDB extends Word {
 
     public String getInfo() {
         String ans = "";
+        ans += String.format("%-12s%-50s%n", "target:", word_target);
         ans += String.format("%-12s%-50s%n", "meaning:", word_explain);
         ans += String.format("%-12s%-50s%n", "pronounce:", pronounce);
         ans += String.format("%-12s%-50s%n", "type:", type);

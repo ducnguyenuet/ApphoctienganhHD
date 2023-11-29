@@ -43,6 +43,15 @@
                   </ImageView>
                </graphic>
             </Button>
+            <Button fx:id="clBut" mnemonicParsing="false" prefHeight="31.0" prefWidth="54.0" style="-fx-background-color: transparent;">
+               <graphic>
+                  <ImageView fitHeight="47.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../image/dauX.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </HBox>
    </children>

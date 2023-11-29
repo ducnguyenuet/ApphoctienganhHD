@@ -3,15 +3,24 @@ package controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicBoolean;
+
+import com.example.dictionaryy.Database;
+import com.example.dictionaryy.WordOfDB;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -26,7 +35,9 @@ import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import javafx.util.converter.IntegerStringConverter;
 import javafx.scene.paint.ImagePattern;
@@ -390,10 +401,76 @@ public class gameController extends Application {
                     root.getChildren().remove(heart3);
                     root.getChildren().remove(heart2);
                     root.getChildren().remove(heart1);
-                    remainingLives--;
+
+                    AtomicBoolean ans = new AtomicBoolean(false);
+
+                    Thread quizThread = new Thread(() -> {
+                        Database db = new Database();
+                        ArrayList<WordOfDB> List = db.getAllWord();
+                        int k = List.size();
+                        db.close();
+                        Random rd = new Random();
+                        int x = rd.nextInt(k);
+
+                        while (List.get(x).getAudio().isEmpty() && List.get(x).getDefinition().isEmpty()) {
+                            x = rd.nextInt(k);
+                        }
+
+                        WordOfDB key = List.get(x);
+                        System.out.println(key.getInfo());
+
+                        int quizType = 0;
+
+                        if (quizType == 0) {
+                            try {
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/dictionaryy/quiz.fxml"));
+                                Parent quizRoot = loader.load();
+                                QuizController quizController = loader.getController();
+                                quizController.setKeyWord(key);
+                                quizController.setQuiz();
+
+                                Platform.runLater(() -> {
+                                    Stage quizStage = new Stage();
+                                    Scene quizScene = new Scene(quizRoot);
+                                    quizStage.setScene(quizScene);
+                                    quizStage.initModality(Modality.APPLICATION_MODAL);
+                                    quizStage.initStyle(StageStyle.DECORATED);
+                                    quizStage.show();
+
+                                    Button closeStage = (Button) quizScene.lookup("#clBut");
+                                    closeStage.setOnMouseClicked(es -> {
+                                        if (quizController.isCheckRs()) {
+                                            System.out.println("true");
+                                            ans.set(true);
+                                        } else {
+                                            System.out.println("false");
+                                            ans.set(false);
+                                        }
+                                        quizStage.close();
+                                    });
+                                });
+                            } catch (IOException et) {
+                                et.printStackTrace();
+                            }
+                        }
+                    });
+
+                    quizThread.start();
+
+                    try {
+                        quizThread.join(); // Đợi cho luồng hoàn thành trước khi chuyển sang bước tiếp theo
+                    } catch (InterruptedException et) {
+                        et.printStackTrace();
+                    }
+
+                    if (!ans.get()) {
+                        remainingLives--;
+                    }
+
                     initializeHearts(remainingLives);
                     start1();
                 }
+
             }
         });
 
@@ -459,7 +536,57 @@ public class gameController extends Application {
         start(primaryStage); // Gọi đến phương thức start() với primaryStage
     }
 
+    public boolean Quiz() {
+        AtomicBoolean ans = new AtomicBoolean(true);
+            Database db = new Database();
+            ArrayList<WordOfDB> List = db.getAllWord();
+            int k = List.size();
+            db.close();
+            Random rd = new Random();
+            int x = rd.nextInt(k);
+            while (List.get(x).getAudio().isEmpty() && List.get(x).getDefinition().isEmpty()) {
+                x = rd.nextInt(k);
+            }
+            WordOfDB key = List.get(x);
+            System.out.println(key.getInfo());
+            int quizType = 0;
+            if (quizType == 0) {
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/dictionaryy/quiz.fxml"));
+                        Parent root = loader.load();
+                        QuizController quizController = loader.getController();
+                        quizController.setKeyWord(key);
+                        quizController.setQuiz();
+                        Stage stage = new Stage();
+                        Scene scene = new Scene(root);
+                        stage.setScene(scene);
+                        stage.initModality(Modality.APPLICATION_MODAL);
+                        stage.initStyle(StageStyle.DECORATED);
+                        stage.show();
+
+                        Button closeStage = (Button) scene.lookup("#clBut");
+                        closeStage.setOnMouseClicked(e -> {
+                            if (quizController.isCheckRs()) {
+                                System.out.println("true");
+                                ans.set(true);
+                            } else {
+                                System.out.println("false");
+                                ans.set(false);
+                            }
+                            stage.close();
+                        });
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+            }
+        return ans.get();
+    }
+
+
+
     public static void main(String[] args) {
         launch(args);
     }
+
+
 }

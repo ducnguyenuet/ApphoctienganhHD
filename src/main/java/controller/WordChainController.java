@@ -78,6 +78,12 @@ public class WordChainController {
         while (low <= high) {
             int mid = (low + high) >>> 1;
             WordOfDB midVal = list.get(mid);
+            String wordTarget = midVal.getWord_target();
+            if(wordTarget.isEmpty())
+            {
+                low = mid+1;
+                continue;
+            }
             char midChar = midVal.getWord_target().charAt(0); // Lấy ký tự đầu tiên
 
             if (midChar == st) {
