@@ -22,6 +22,7 @@ public class APIWindowController implements Initializable {
     private String langFrom = "en";
     private String langTo = "vi";
     private String text;
+    private String lang = "en";
 
     @FXML
     private ComboBox<String> comboBox1;
@@ -44,6 +45,8 @@ public class APIWindowController implements Initializable {
     private ObservableList<String> languageList;
     private Map<String, String> languageMap;
     private List<String> languageOrder;
+
+    private boolean isSoundPlaying = false;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -72,6 +75,7 @@ public class APIWindowController implements Initializable {
 
     }
 
+    @FXML
     public void buttonTranslateClickedOn() throws IOException {
         text = textField1.getText();
         translatorFromAPI translator = new translatorFromAPI();
@@ -110,5 +114,19 @@ public class APIWindowController implements Initializable {
         }
     }
 
+    @FXML
+    public void soundClickedOn1 () throws IOException {
+        lang = languageMap.get(comboBox1.getValue());
+        text = textField1.getText();
+        translatorFromAPI translator = new translatorFromAPI();
+        translator.playTextToSpeech(lang,text);
+    }
 
+    @FXML
+    public void soundClickedOn2 () throws IOException {
+        lang = languageMap.get(comboBox2.getValue());
+        text = textField2.getText();
+        translatorFromAPI translator = new translatorFromAPI();
+        translator.playTextToSpeech(lang,text);
+    }
 }

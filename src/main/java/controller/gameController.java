@@ -112,7 +112,7 @@ public class gameController extends Application {
 
     //Them chuong ngai vat
     void addBarrier() {
-        int space = 280;
+        int space = 270;
         int width = 100;
         int height = 50 + (int)(Math.random() * 200);
 
@@ -166,7 +166,12 @@ public class gameController extends Application {
         gameOver = false;
         yToaDo = 0;
         //score = 0;
-        scorelabel.setText("  Score: " + str.toString(score));
+        if (remainingLives >= 0) {
+            scorelabel.setText("  Score: " + str.toString(score / 2));
+        } else {
+            scorelabel.setText("  Score: " + str.toString(score));
+        }
+
         root.getChildren().remove(bton);
         root.getChildren().removeAll(barriers);
         barriers.clear();
@@ -175,7 +180,7 @@ public class gameController extends Application {
 
     void generateInitialBarriers() {
         int i = 0;
-        while(i < 100) {
+        while(i < 500) {
             addBarrier();
             i++;
         }
@@ -320,7 +325,7 @@ public class gameController extends Application {
         overBackground.setFitHeight(H);
 
         Label lo = new Label();
-        lo.setText("Game Over\n   Score: " + str.toString(score / 2));
+        lo.setText("Game Over\n  Score: " + str.toString(score / 2));
         lo.setFont(Font.font(customFont.getFamily(), 42));
         lo.setLayoutX(primaryStage.getWidth() / 2 - 95);
         lo.setLayoutY(primaryStage.getHeight() / 2 - 125);
@@ -352,15 +357,14 @@ public class gameController extends Application {
             if (gameOver) {
                 overMediaPlayer.stop();
                 overMediaPlayer.play();
-            }
-
-            if (gameOver) {
 
                 bird.setCenterY(H - 95 - bird.getRadiusY());
 
                 if (remainingLives <= 0) {
 
                     //score = 0;
+                    lo.setText("Game Over\n   Score: " + str.toString(score / 2));
+
                     if (!root.getChildren().contains(overBackground)) {
                         root.getChildren().addAll(overBackground);
                     }
@@ -374,7 +378,8 @@ public class gameController extends Application {
 //                    }
 
                     bton.setOnMouseClicked(k -> {
-                        //score = 0;
+
+                        score = 0;
                         root.getChildren().remove(overBackground); // Xóa background 'bgOver.png'
                         root.getChildren().remove(l);
                         root.getChildren().remove(lo);
@@ -406,6 +411,9 @@ public class gameController extends Application {
 
         barriers = new ArrayList<Rectangle>();
 
+        Media passSound = new Media(new File("src/main/resources/sound/pass.mp3").toURI().toString());
+        MediaPlayer passMediaPlayer = new MediaPlayer(passSound);
+
         //Xu li chuong ngai vat
         KeyFrame kf2 = new KeyFrame(Duration.millis(20), e -> {
 
@@ -418,8 +426,7 @@ public class gameController extends Application {
                 if(barrier.getY() == 0 && bird.getCenterX() + bird.getRadiusX() > barrier.getX() + barrier.getWidth() / 2 - 5
                         && bird.getCenterX() + bird.getRadiusX() < barrier.getX() + barrier.getWidth() / 2 + 5) {
 
-                    Media passSound = new Media(new File("src/main/resources/sound/pass.mp3").toURI().toString());
-                    MediaPlayer passMediaPlayer = new MediaPlayer(passSound);
+                    passMediaPlayer.stop();
                     passMediaPlayer.play();
 
                     score++;
