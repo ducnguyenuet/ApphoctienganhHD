@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -24,7 +25,10 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="83.0" prefWidth="600.0">
          <children>
-            <Label fx:id="df" text="Label" />
+            <Label fx:id="df" text="Label">
+               <font>
+                  <Font size="13.0" />
+               </font></Label>
          </children>
       </HBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
@@ -39,15 +43,6 @@
                   <ImageView fitHeight="59.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../image/yes.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="clBut" mnemonicParsing="false" prefHeight="31.0" prefWidth="54.0" style="-fx-background-color: transparent;">
-               <graphic>
-                  <ImageView fitHeight="47.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../image/dauX.png" />
                      </image>
                   </ImageView>
                </graphic>
