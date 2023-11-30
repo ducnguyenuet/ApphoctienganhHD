@@ -11,7 +11,18 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
 public class QuizController {
+    public Button clBut;
     private WordOfDB keyWord;
+
+    private boolean checkRs;
+
+    public boolean isCheckRs() {
+        return checkRs;
+    }
+
+    public void setCheckRs(boolean checkRs) {
+        this.checkRs = checkRs;
+    }
 
     public WordOfDB getKeyWord() {
         return keyWord;
@@ -26,27 +37,18 @@ public class QuizController {
     public TextField input;
     public Button okBut;
 
-    public void setQuiz()
-    {
+    public void setQuiz() {
         df.setText(keyWord.getDefinition());
     }
 
     public void summit(ActionEvent event) {
         String text = input.getText();
-        if(text.equals(keyWord.getWord_target())){
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Your answer is correct!");
-            alert.setHeaderText(keyWord.getInfo());
-            alert.setContentText("Good job ^^,keep going!!");
-            alert.getDialogPane().setGraphic(new ImageView("checked.png"));
-            alert.showAndWait();
-        }
-        else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Your answer is incorrect!");
-            alert.setHeaderText(keyWord.getInfo());
-            alert.setContentText("try your best next time!");
-            alert.showAndWait();
+        if (text.equals(keyWord.getWord_target())) {
+            checkRs = true;
+
+        } else {
+            checkRs = false;
+
         }
     }
 

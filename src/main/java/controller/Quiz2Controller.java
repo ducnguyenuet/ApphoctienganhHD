@@ -16,6 +16,15 @@ import java.util.Random;
 import static java.lang.Math.random;
 
 public class Quiz2Controller {
+    private boolean checkRs;
+
+    public boolean isCheckRs() {
+        return checkRs;
+    }
+
+    public void setCheckRs(boolean checkRs) {
+        this.checkRs = checkRs;
+    }
 
     private WordOfDB keyWord;
 
@@ -33,22 +42,20 @@ public class Quiz2Controller {
     public Button ans3;
     public Button ans4;
 
-    public void setQuiz()
-    {
+    public void setQuiz() {
         String hideEx = keyWord.getExample().replace(keyWord.getWord_target(), "......");
         exp.setText(hideEx);
-        Map<Integer,Button> myMap = new HashMap<>();
-        myMap.put(0,ans1);
-        myMap.put(1,ans2);
-        myMap.put(2,ans3);
-        myMap.put(3,ans4);
+        Map<Integer, Button> myMap = new HashMap<>();
+        myMap.put(0, ans1);
+        myMap.put(1, ans2);
+        myMap.put(2, ans3);
+        myMap.put(3, ans4);
         Random random = new Random();
         int keyCloud = random.nextInt(3);
-        for(Map.Entry<Integer,Button> entry: myMap.entrySet()){
-            if(entry.getKey().equals(keyCloud)){
+        for (Map.Entry<Integer, Button> entry : myMap.entrySet()) {
+            if (entry.getKey().equals(keyCloud)) {
                 entry.getValue().setText(keyWord.getWord_target());
-            }
-            else{
+            } else {
                 Database db = new Database();
                 ArrayList<WordOfDB> List = db.getAllWord();
                 int k = List.size();
@@ -64,21 +71,11 @@ public class Quiz2Controller {
     public void choose(ActionEvent event) {
         Button clickedButton = (Button) event.getSource();
         String buttonText = clickedButton.getText();
-        if(buttonText.equals(keyWord.getWord_target()))
-        {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Your answer is correct!");
-            alert.setHeaderText(keyWord.getInfo());
-            alert.setContentText("Good job ^^,keep going!!");
-            alert.getDialogPane().setGraphic(new ImageView("checked.png"));
-            alert.showAndWait();
-        }
-        else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Your answer is incorrect!");
-            alert.setHeaderText(keyWord.getInfo());
-            alert.setContentText("try your best next time!");
-            alert.showAndWait();
+        if (buttonText.equals(keyWord.getWord_target())) {
+            checkRs = true;
+        } else {
+            checkRs = false;
+
         }
     }
 }
