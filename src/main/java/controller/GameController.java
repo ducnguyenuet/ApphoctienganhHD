@@ -365,7 +365,7 @@ public class GameController extends Application {
                 bird.setCenterY(H - 95 - bird.getRadiusY());
 
                 if (remainingLives <= 0) {
-
+                    mediaPlayer.stop();
                     //score = 0;
                     lo.setText("Game Over\n   Score: " + str.toString(score / 2));
 
@@ -389,8 +389,10 @@ public class GameController extends Application {
                         remainingLives = 3;
                         initializeHearts(remainingLives);
                         start1();
+                        mediaPlayer.play();
                     });
                 } else {
+                    mediaPlayer.stop();
                     root.getChildren().remove(l);
                     root.getChildren().remove(heart3);
                     root.getChildren().remove(heart2);
@@ -447,7 +449,7 @@ public class GameController extends Application {
                                         }
                                         initializeHearts(remainingLives);
                                         quizStage.close();
-
+                                        mediaPlayer.play();
                                     });
                                 } catch (IOException et) {
                                     et.printStackTrace();
@@ -462,7 +464,7 @@ public class GameController extends Application {
                                     Stage quizStage = new Stage();
                                     Scene quizScene = new Scene(quizRoot);
                                     quizStage.setScene(quizScene);
-                                    //quizStage.initModality(Modality.APPLICATION_MODAL);
+                                    quizStage.initModality(Modality.APPLICATION_MODAL);
                                     quizStage.initStyle(StageStyle.DECORATED);
                                     quizStage.show();
                                     Button closeStage1 = (Button) quizScene.lookup("#ans1");
@@ -490,7 +492,7 @@ public class GameController extends Application {
                                         }
                                         initializeHearts(remainingLives);
                                         quizStage.close();
-
+                                        mediaPlayer.play();
                                     });
                                     closeStage2.setOnMouseClicked(es -> {
                                         if (quizController.isCheckRs()) {
@@ -513,7 +515,7 @@ public class GameController extends Application {
                                         }
                                         initializeHearts(remainingLives);
                                         quizStage.close();
-
+                                        mediaPlayer.play();
                                     });
                                     closeStage3.setOnMouseClicked(es -> {
                                         if (quizController.isCheckRs()) {
@@ -536,7 +538,7 @@ public class GameController extends Application {
                                         }
                                         initializeHearts(remainingLives);
                                         quizStage.close();
-
+                                        mediaPlayer.play();
                                     });
                                     closeStage4.setOnMouseClicked(es -> {
                                         if (quizController.isCheckRs()) {
@@ -559,7 +561,7 @@ public class GameController extends Application {
                                         }
                                         initializeHearts(remainingLives);
                                         quizStage.close();
-
+                                        mediaPlayer.play();
                                     });
                                 } catch (IOException et) {
                                     et.printStackTrace();
