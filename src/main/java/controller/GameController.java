@@ -12,6 +12,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,7 +22,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
@@ -63,17 +63,13 @@ public class GameController extends Application {
     IntegerStringConverter str = new IntegerStringConverter();
     Timeline tm = new Timeline();
     Scene scene = new Scene(root);
-    Image cloud;
-    ImageView cloudv;
-    int X,Y;
-    //DropShadow ds1;
+    int X;
     int remainingLives = 3;
     ImageView heart1, heart2, heart3;
-    AnchorPane windowGame = new AnchorPane();
 
     File fontFile = new File("src/main/resources/font/newFont01.ttf");
     String fontPath = fontFile.toURI().toString();
-    Font customFont = Font.loadFont(fontPath, 20); // 20 là kích thước font
+    Font customFont = Font.loadFont(fontPath, 20);
 
     Media themeSong = new Media(new File("src/main/resources/sound/themeSong.mp3").toURI().toString());
     MediaPlayer mediaPlayer = new MediaPlayer(themeSong);
@@ -129,7 +125,7 @@ public class GameController extends Application {
         barriers.add(new Rectangle(W + width + (barriers.size() - 1) * 200,0,width,H - height - space));
     }
 
-    boolean gameOverSoundPlayed = false;
+    //boolean gameOverSoundPlayed = false;
 
     //Xu li va cham
     void Collision() {
@@ -298,7 +294,6 @@ public class GameController extends Application {
         bird.setRadiusY((img.getHeight() / 2) + 2);
         bird.setCenterX(W / 2 - 10);
         bird.setCenterY(H / 2 - 10);
-        //bird.setEffect(ds1);
 
         index = 0;
         yToaDo = 0;
@@ -382,10 +377,6 @@ public class GameController extends Application {
                         root.getChildren().addAll(lo, bton);
                     }
 
-//                    if (!(root.getChildren().contains(bton))) {
-//                        root.getChildren().addAll(bton);
-//                    }
-
                     bton.setOnMouseClicked(k -> {
 
                         score = 0;
@@ -404,6 +395,7 @@ public class GameController extends Application {
                     root.getChildren().remove(heart3);
                     root.getChildren().remove(heart2);
                     root.getChildren().remove(heart1);
+                    start1();
                     Varriable vr = new Varriable();
                         Database db = new Database();
                         ArrayList<WordOfDB> List = db.getAllWord();
@@ -412,168 +404,168 @@ public class GameController extends Application {
                         Random rd = new Random();
                         int x = rd.nextInt(k);
 
-                        while (List.get(x).getAudio().isEmpty() && List.get(x).getDefinition().isEmpty()) {
+                        while (List.get(x).getAudio().isEmpty() && List.get(x).getDefinition().isEmpty()&& !List.get(x).getDefinition().equals("null")) {
                             x = rd.nextInt(k);
                         }
 
                         WordOfDB key = List.get(x);
-                        int quizType = rd.nextInt(2);
-                        if(quizType == 0)
-                        {
-                            try {
-                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/dictionaryy/quiz.fxml"));
-                                Parent quizRoot = loader.load();
-                                QuizController quizController = loader.getController();
-                                quizController.setKeyWord(key);
-                                quizController.setQuiz();
-                                Stage quizStage = new Stage();
-                                Scene quizScene = new Scene(quizRoot);
-                                quizStage.setScene(quizScene);
-                                quizStage.initModality(Modality.APPLICATION_MODAL);
-                                quizStage.initStyle(StageStyle.DECORATED);
-                                quizStage.show();
-                                Button closeStage = (Button) quizScene.lookup("#okBut");
-                                closeStage.setOnMouseClicked(es -> {
-                                    if (quizController.isCheckRs()) {
-                                        vr.ans= true;
-                                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                                        alert.setTitle("Your answer is correct!");
-                                        alert.setHeaderText(key.getInfo());
-                                        alert.setContentText("Good job ^^,keep going!!");
-                                        alert.showAndWait();
-                                    } else {
-                                        vr.ans= false;
-                                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                                        alert.setTitle("Your answer is incorrect!");
-                                        alert.setHeaderText(key.getInfo());
-                                        alert.setContentText("try your best next time!");
-                                        alert.showAndWait();
-                                    }
-                                    if (!vr.ans) {
-                                        remainingLives--;
-                                    }
-                                    initializeHearts(remainingLives);
 
-                                    quizStage.close();
-                                });
-                            } catch (IOException et) {
-                                et.printStackTrace();
+                            int quizType = rd.nextInt(2);
+                            if(quizType == 0)
+                            {
+                                try {
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/dictionaryy/quiz.fxml"));
+                                    Parent quizRoot = loader.load();
+                                    QuizController quizController = loader.getController();
+                                    quizController.setKeyWord(key);
+                                    quizController.setQuiz();
+                                    Stage quizStage = new Stage();
+                                    Scene quizScene = new Scene(quizRoot);
+                                    quizStage.setScene(quizScene);
+                                    quizStage.initModality(Modality.APPLICATION_MODAL);
+                                    quizStage.initStyle(StageStyle.DECORATED);
+                                    quizStage.show();
+                                    Button closeStage = (Button) quizScene.lookup("#okBut");
+                                    closeStage.setOnMouseClicked(es -> {
+                                        if (quizController.isCheckRs()) {
+                                            vr.ans= true;
+                                            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                                            alert.setTitle("Your answer is correct!");
+                                            alert.setHeaderText(key.getInfo());
+                                            alert.setContentText("Good job ^^,keep going!!");
+                                            alert.show();
+                                        } else {
+                                            vr.ans= false;
+                                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                                            alert.setTitle("Your answer is incorrect!");
+                                            alert.setHeaderText(key.getInfo());
+                                            alert.setContentText("try your best next time!");
+                                            alert.show();
+                                        }
+                                        if (!vr.ans) {
+                                            remainingLives--;
+                                        }
+                                        initializeHearts(remainingLives);
+                                        quizStage.close();
+
+                                    });
+                                } catch (IOException et) {
+                                    et.printStackTrace();
+                                }
+                            } else {
+                                try {
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/dictionaryy/quiz2.fxml"));
+                                    Parent quizRoot = loader.load();
+                                    Quiz2Controller quizController = loader.getController();
+                                    quizController.setKeyWord(key);
+                                    quizController.setQuiz();
+                                    Stage quizStage = new Stage();
+                                    Scene quizScene = new Scene(quizRoot);
+                                    quizStage.setScene(quizScene);
+                                    //quizStage.initModality(Modality.APPLICATION_MODAL);
+                                    quizStage.initStyle(StageStyle.DECORATED);
+                                    quizStage.show();
+                                    Button closeStage1 = (Button) quizScene.lookup("#ans1");
+                                    Button closeStage2 = (Button) quizScene.lookup("#ans2");
+                                    Button closeStage3 = (Button) quizScene.lookup("#ans3");
+                                    Button closeStage4 = (Button) quizScene.lookup("#ans4");
+                                    closeStage1.setOnMouseClicked(es -> {
+                                        if (quizController.isCheckRs()) {
+                                            vr.ans= true;
+                                            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                                            alert.setTitle("Your answer is correct!");
+                                            alert.setHeaderText(key.getInfo());
+                                            alert.setContentText("Good job ^^,keep going!!");
+                                            alert.show();
+                                        } else {
+                                            vr.ans= false;
+                                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                                            alert.setTitle("Your answer is incorrect!");
+                                            alert.setHeaderText(key.getInfo());
+                                            alert.setContentText("try your best next time!");
+                                            alert.show();
+                                        }
+                                        if (!vr.ans) {
+                                            remainingLives--;
+                                        }
+                                        initializeHearts(remainingLives);
+                                        quizStage.close();
+
+                                    });
+                                    closeStage2.setOnMouseClicked(es -> {
+                                        if (quizController.isCheckRs()) {
+                                            vr.ans= true;
+                                            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                                            alert.setTitle("Your answer is correct!");
+                                            alert.setHeaderText(key.getInfo());
+                                            alert.setContentText("Good job ^^,keep going!!");
+                                            alert.show();
+                                        } else {
+                                            vr.ans= false;
+                                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                                            alert.setTitle("Your answer is incorrect!");
+                                            alert.setHeaderText(key.getInfo());
+                                            alert.setContentText("try your best next time!");
+                                            alert.show();
+                                        }
+                                        if (!vr.ans) {
+                                            remainingLives--;
+                                        }
+                                        initializeHearts(remainingLives);
+                                        quizStage.close();
+
+                                    });
+                                    closeStage3.setOnMouseClicked(es -> {
+                                        if (quizController.isCheckRs()) {
+                                            vr.ans= true;
+                                            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                                            alert.setTitle("Your answer is correct!");
+                                            alert.setHeaderText(key.getInfo());
+                                            alert.setContentText("Good job ^^,keep going!!");
+                                            alert.show();
+                                        } else {
+                                            vr.ans= false;
+                                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                                            alert.setTitle("Your answer is incorrect!");
+                                            alert.setHeaderText(key.getInfo());
+                                            alert.setContentText("try your best next time!");
+                                            alert.show();
+                                        }
+                                        if (!vr.ans) {
+                                            remainingLives--;
+                                        }
+                                        initializeHearts(remainingLives);
+                                        quizStage.close();
+
+                                    });
+                                    closeStage4.setOnMouseClicked(es -> {
+                                        if (quizController.isCheckRs()) {
+                                            vr.ans= true;
+                                            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                                            alert.setTitle("Your answer is correct!");
+                                            alert.setHeaderText(key.getInfo());
+                                            alert.setContentText("Good job ^^,keep going!!");
+                                            alert.show();
+                                        } else {
+                                            vr.ans= false;
+                                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                                            alert.setTitle("Your answer is incorrect!");
+                                            alert.setHeaderText(key.getInfo());
+                                            alert.setContentText("try your best next time!");
+                                            alert.show();
+                                        }
+                                        if (!vr.ans) {
+                                            remainingLives--;
+                                        }
+                                        initializeHearts(remainingLives);
+                                        quizStage.close();
+
+                                    });
+                                } catch (IOException et) {
+                                    et.printStackTrace();
+                                }
                             }
-                        } else {
-                            try {
-                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/dictionaryy/quiz2.fxml"));
-                                Parent quizRoot = loader.load();
-                                Quiz2Controller quizController = loader.getController();
-                                quizController.setKeyWord(key);
-                                quizController.setQuiz();
-                                Stage quizStage = new Stage();
-                                Scene quizScene = new Scene(quizRoot);
-                                quizStage.setScene(quizScene);
-                                quizStage.initModality(Modality.APPLICATION_MODAL);
-                                quizStage.initStyle(StageStyle.DECORATED);
-                                quizStage.show();
-                                Button closeStage1 = (Button) quizScene.lookup("#ans1");
-                                Button closeStage2 = (Button) quizScene.lookup("#ans2");
-                                Button closeStage3 = (Button) quizScene.lookup("#ans3");
-                                Button closeStage4 = (Button) quizScene.lookup("#ans4");
-                                closeStage1.setOnMouseClicked(es -> {
-                                    if (quizController.isCheckRs()) {
-                                        vr.ans= true;
-                                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                                        alert.setTitle("Your answer is correct!");
-                                        alert.setHeaderText(key.getInfo());
-                                        alert.setContentText("Good job ^^,keep going!!");
-                                        alert.showAndWait();
-                                    } else {
-                                        vr.ans= false;
-                                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                                        alert.setTitle("Your answer is incorrect!");
-                                        alert.setHeaderText(key.getInfo());
-                                        alert.setContentText("try your best next time!");
-                                        alert.showAndWait();
-                                    }
-                                    if (!vr.ans) {
-                                        remainingLives--;
-                                    }
-                                    initializeHearts(remainingLives);
 
-                                    quizStage.close();
-                                });
-                                closeStage2.setOnMouseClicked(es -> {
-                                    if (quizController.isCheckRs()) {
-                                        vr.ans= true;
-                                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                                        alert.setTitle("Your answer is correct!");
-                                        alert.setHeaderText(key.getInfo());
-                                        alert.setContentText("Good job ^^,keep going!!");
-                                        alert.showAndWait();
-                                    } else {
-                                        vr.ans= false;
-                                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                                        alert.setTitle("Your answer is incorrect!");
-                                        alert.setHeaderText(key.getInfo());
-                                        alert.setContentText("try your best next time!");
-                                        alert.showAndWait();
-                                    }
-                                    if (!vr.ans) {
-                                        remainingLives--;
-                                    }
-                                    initializeHearts(remainingLives);
-
-                                    quizStage.close();
-                                });
-                                closeStage3.setOnMouseClicked(es -> {
-                                    if (quizController.isCheckRs()) {
-                                        vr.ans= true;
-                                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                                        alert.setTitle("Your answer is correct!");
-                                        alert.setHeaderText(key.getInfo());
-                                        alert.setContentText("Good job ^^,keep going!!");
-                                        alert.showAndWait();
-                                    } else {
-                                        vr.ans= false;
-                                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                                        alert.setTitle("Your answer is incorrect!");
-                                        alert.setHeaderText(key.getInfo());
-                                        alert.setContentText("try your best next time!");
-                                        alert.showAndWait();
-                                    }
-                                    if (!vr.ans) {
-                                        remainingLives--;
-                                    }
-                                    initializeHearts(remainingLives);
-
-                                    quizStage.close();
-                                });
-                                closeStage4.setOnMouseClicked(es -> {
-                                    if (quizController.isCheckRs()) {
-                                        vr.ans= true;
-                                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                                        alert.setTitle("Your answer is correct!");
-                                        alert.setHeaderText(key.getInfo());
-                                        alert.setContentText("Good job ^^,keep going!!");
-                                        alert.showAndWait();
-                                    } else {
-                                        vr.ans= false;
-                                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                                        alert.setTitle("Your answer is incorrect!");
-                                        alert.setHeaderText(key.getInfo());
-                                        alert.setContentText("try your best next time!");
-                                        alert.showAndWait();
-                                    }
-                                    if (!vr.ans) {
-                                        remainingLives--;
-                                    }
-                                    initializeHearts(remainingLives);
-
-                                    quizStage.close();
-                                });
-                            } catch (IOException et) {
-                                et.printStackTrace();
-                            }
-                        }
-
-                    start1();
                 }
             }
         });
