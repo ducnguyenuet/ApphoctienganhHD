@@ -22,6 +22,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
@@ -452,6 +453,32 @@ public class GameController extends Application {
                                         initializeHearts(remainingLives);
                                         quizStage.close();
                                         mediaPlayer.play();
+                                    });
+                                    quizScene.setOnKeyPressed(event -> {
+                                        if (event.getCode() == KeyCode.ENTER) {
+                                            if (quizController.isCheckRs()) {
+                                                vr.ans= true;
+                                                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                                                alert.setTitle("Your answer is correct!");
+                                                alert.setHeaderText(key.getInfo());
+                                                alert.setContentText("Good job ^^,keep going!!");
+                                                alert.show();
+                                            } else {
+                                                vr.ans= false;
+                                                Alert alert = new Alert(Alert.AlertType.ERROR);
+                                                alert.setTitle("Your answer is incorrect!");
+                                                alert.setHeaderText(key.getInfo());
+                                                alert.setContentText("try your best next time!");
+                                                alert.show();
+                                            }
+                                            if (!vr.ans) {
+                                                remainingLives--;
+                                            }
+                                            initializeHearts(remainingLives);
+                                            quizStage.close();
+                                            mediaPlayer.play();
+                                        }
+
                                     });
                                 } catch (IOException et) {
                                     et.printStackTrace();
