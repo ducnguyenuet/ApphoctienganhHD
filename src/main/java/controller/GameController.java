@@ -426,6 +426,8 @@ public class GameController extends Application {
                                     quizStage.setScene(quizScene);
                                     quizStage.initModality(Modality.APPLICATION_MODAL);
                                     quizStage.initStyle(StageStyle.DECORATED);
+                                    quizStage.initStyle(StageStyle.UTILITY);
+                                    quizStage.setOnCloseRequest(event -> event.consume());
                                     quizStage.show();
                                     Button closeStage = (Button) quizScene.lookup("#okBut");
                                     closeStage.setOnMouseClicked(es -> {
@@ -466,6 +468,8 @@ public class GameController extends Application {
                                     quizStage.setScene(quizScene);
                                     quizStage.initModality(Modality.APPLICATION_MODAL);
                                     quizStage.initStyle(StageStyle.DECORATED);
+                                    quizStage.initStyle(StageStyle.UTILITY);
+                                    quizStage.setOnCloseRequest(event -> event.consume());
                                     quizStage.show();
                                     Button closeStage1 = (Button) quizScene.lookup("#ans1");
                                     Button closeStage2 = (Button) quizScene.lookup("#ans2");
