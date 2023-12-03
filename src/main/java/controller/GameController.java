@@ -235,6 +235,11 @@ public class GameController extends Application {
         tm.play();
     }
 
+    public void stopBackgroundMusic() {
+        if (mediaPlayer != null) {
+            mediaPlayer.stop();
+        }
+    }
 
     @Override
     public void start(Stage window) {
@@ -656,6 +661,7 @@ public class GameController extends Application {
         scene.setFill(Color.LIGHTBLUE);
         start1();
 
+        primaryStage.setOnHiding(event -> stopBackgroundMusic());
         primaryStage.setScene(scene);
         primaryStage.setHeight(H);
         primaryStage.setWidth(W);
