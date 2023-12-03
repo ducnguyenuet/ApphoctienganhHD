@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="585.0" prefWidth="897.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HangmanController">
+   <children>
+      <ImageView fx:id="balloon" fitHeight="585.0" fitWidth="474.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../image/7.jpg" />
+         </image>
+         <HBox.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </HBox.margin>
+      </ImageView>
+      <VBox alignment="TOP_CENTER" prefHeight="585.0" prefWidth="421.0" spacing="5.0">
+         <children>
+            <ImageView fitHeight="68.0" fitWidth="273.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../image/z4938090168910_9bdb85c62ee1f1571da14b2443b7be72.jpg" />
+               </image>
+            </ImageView>
+            <HBox alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="273.0" spacing="10.0">
+               <children>
+                  <Label text="Your turns left:">
+                     <font>
+                        <Font name="System Italic" size="19.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="15.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="ytl" text="7">
+                     <font>
+                        <Font name="System Italic" size="19.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="273.0" spacing="10.0">
+               <children>
+                  <Label text="Entered character:">
+                     <font>
+                        <Font name="System Italic" size="19.0" />
+                     </font>
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="ec">
+                     <font>
+                        <Font name="System Italic" size="19.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <ImageView fitHeight="38.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../image/key.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="key">
+               <font>
+                  <Font name="System Bold Italic" size="39.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
+            <HBox alignment="CENTER" prefHeight="57.0" prefWidth="273.0">
+               <children>
+                  <TextField fx:id="input" onKeyPressed="#guest" prefHeight="39.0" prefWidth="55.0" />
+                  <Button mnemonicParsing="false" onAction="#setKey" prefHeight="39.0" prefWidth="41.0">
+                     <graphic>
+                        <ImageView fitHeight="31.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../image/loading-arrow.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="64.0" prefWidth="421.0">
+               <children>
+                  <Button fx:id="bulb" mnemonicParsing="false" onAction="#getHint" prefHeight="42.0" prefWidth="37.0" style="-fx-background-color: transparent;">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="29.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../image/light-bulb.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Label prefHeight="52.0" prefWidth="366.0" text="Click to take hint!">
+                     <font>
+                        <Font name="System Italic" size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <Label fx:id="hintText" alignment="TOP_LEFT" prefHeight="202.0" prefWidth="423.0">
+               <VBox.margin>
+                  <Insets left="15.0" />
+               </VBox.margin>
+            </Label>
+         </children>
+      </VBox>
+   </children>
+</HBox>

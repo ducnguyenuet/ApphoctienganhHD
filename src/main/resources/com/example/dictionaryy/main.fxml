@@ -59,6 +59,15 @@
                   </ImageView>
                </graphic>
             </Button>
+            <Button mnemonicParsing="false" onAction="#toHangman" prefHeight="67.0" prefWidth="86.0" style="-fx-background-color: transparent;">
+               <graphic>
+                  <ImageView fitHeight="52.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../image/hangman-game.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </VBox>
    </left>

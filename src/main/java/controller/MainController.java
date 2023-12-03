@@ -330,4 +330,9 @@ public class MainController implements Initializable {
     public void tomess(MouseEvent mouseEvent) {
         loadScene("/com/example/dictionaryy/WordChain.fxml");
     }
+
+
+    public void toHangman(ActionEvent event) {
+        loadScene("/com/example/dictionaryy/hangman.fxml");
+    }
 }
