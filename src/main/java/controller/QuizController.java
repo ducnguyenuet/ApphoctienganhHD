@@ -48,7 +48,6 @@ public class QuizController {
 
         } else {
             checkRs = false;
-
         }
     }
 

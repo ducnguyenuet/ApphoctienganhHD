@@ -22,7 +22,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.input.KeyCode;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
@@ -64,17 +64,13 @@ public class GameController extends Application {
     IntegerStringConverter str = new IntegerStringConverter();
     Timeline tm = new Timeline();
     Scene scene = new Scene(root);
-    Image cloud;
-    ImageView cloudv;
-    int X,Y;
-    //DropShadow ds1;
+    int X;
     int remainingLives = 3;
     ImageView heart1, heart2, heart3;
-    AnchorPane windowGame = new AnchorPane();
 
     File fontFile = new File("src/main/resources/font/newFont01.ttf");
     String fontPath = fontFile.toURI().toString();
-    Font customFont = Font.loadFont(fontPath, 20); // 20 là kích thước font
+    Font customFont = Font.loadFont(fontPath, 20);
 
     Media themeSong = new Media(new File("src/main/resources/sound/themeSong.mp3").toURI().toString());
     MediaPlayer mediaPlayer = new MediaPlayer(themeSong);
@@ -130,7 +126,7 @@ public class GameController extends Application {
         barriers.add(new Rectangle(W + width + (barriers.size() - 1) * 200,0,width,H - height - space));
     }
 
-    boolean gameOverSoundPlayed = false;
+    //boolean gameOverSoundPlayed = false;
 
     //Xu li va cham
     void Collision() {
@@ -239,6 +235,11 @@ public class GameController extends Application {
         tm.play();
     }
 
+    public void stopBackgroundMusic() {
+        if (mediaPlayer != null) {
+            mediaPlayer.stop();
+        }
+    }
 
     @Override
     public void start(Stage window) {
@@ -299,7 +300,6 @@ public class GameController extends Application {
         bird.setRadiusY((img.getHeight() / 2) + 2);
         bird.setCenterX(W / 2 - 10);
         bird.setCenterY(H / 2 - 10);
-        //bird.setEffect(ds1);
 
         index = 0;
         yToaDo = 0;
@@ -371,7 +371,7 @@ public class GameController extends Application {
                 bird.setCenterY(H - 95 - bird.getRadiusY());
 
                 if (remainingLives <= 0) {
-
+                    mediaPlayer.stop();
                     //score = 0;
                     lo.setText("Game Over\n   Score: " + str.toString(score / 2));
 
@@ -382,10 +382,6 @@ public class GameController extends Application {
                     if (!(root.getChildren().contains(lo))) {
                         root.getChildren().addAll(lo, bton);
                     }
-
-//                    if (!(root.getChildren().contains(bton))) {
-//                        root.getChildren().addAll(bton);
-//                    }
 
                     bton.setOnMouseClicked(k -> {
 
@@ -399,8 +395,10 @@ public class GameController extends Application {
                         remainingLives = 3;
                         initializeHearts(remainingLives);
                         start1();
+                        mediaPlayer.play();
                     });
                 } else {
+                    mediaPlayer.stop();
                     root.getChildren().remove(l);
                     root.getChildren().remove(heart3);
                     root.getChildren().remove(heart2);
@@ -434,6 +432,8 @@ public class GameController extends Application {
                                     quizStage.setScene(quizScene);
                                     quizStage.initModality(Modality.APPLICATION_MODAL);
                                     quizStage.initStyle(StageStyle.DECORATED);
+                                    quizStage.initStyle(StageStyle.UTILITY);
+                                    quizStage.setOnCloseRequest(event -> event.consume());
                                     quizStage.show();
                                     Button closeStage = (Button) quizScene.lookup("#okBut");
                                     closeStage.setOnMouseClicked(es -> {
@@ -457,6 +457,32 @@ public class GameController extends Application {
                                         }
                                         initializeHearts(remainingLives);
                                         quizStage.close();
+                                        mediaPlayer.play();
+                                    });
+                                    quizScene.setOnKeyPressed(event -> {
+                                        if (event.getCode() == KeyCode.ENTER) {
+                                            if (quizController.isCheckRs()) {
+                                                vr.ans= true;
+                                                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                                                alert.setTitle("Your answer is correct!");
+                                                alert.setHeaderText(key.getInfo());
+                                                alert.setContentText("Good job ^^,keep going!!");
+                                                alert.show();
+                                            } else {
+                                                vr.ans= false;
+                                                Alert alert = new Alert(Alert.AlertType.ERROR);
+                                                alert.setTitle("Your answer is incorrect!");
+                                                alert.setHeaderText(key.getInfo());
+                                                alert.setContentText("try your best next time!");
+                                                alert.show();
+                                            }
+                                            if (!vr.ans) {
+                                                remainingLives--;
+                                            }
+                                            initializeHearts(remainingLives);
+                                            quizStage.close();
+                                            mediaPlayer.play();
+                                        }
 
                                     });
                                 } catch (IOException et) {
@@ -472,8 +498,10 @@ public class GameController extends Application {
                                     Stage quizStage = new Stage();
                                     Scene quizScene = new Scene(quizRoot);
                                     quizStage.setScene(quizScene);
-                                    //quizStage.initModality(Modality.APPLICATION_MODAL);
+                                    quizStage.initModality(Modality.APPLICATION_MODAL);
                                     quizStage.initStyle(StageStyle.DECORATED);
+                                    quizStage.initStyle(StageStyle.UTILITY);
+                                    quizStage.setOnCloseRequest(event -> event.consume());
                                     quizStage.show();
                                     Button closeStage1 = (Button) quizScene.lookup("#ans1");
                                     Button closeStage2 = (Button) quizScene.lookup("#ans2");
@@ -500,7 +528,7 @@ public class GameController extends Application {
                                         }
                                         initializeHearts(remainingLives);
                                         quizStage.close();
-
+                                        mediaPlayer.play();
                                     });
                                     closeStage2.setOnMouseClicked(es -> {
                                         if (quizController.isCheckRs()) {
@@ -523,7 +551,7 @@ public class GameController extends Application {
                                         }
                                         initializeHearts(remainingLives);
                                         quizStage.close();
-
+                                        mediaPlayer.play();
                                     });
                                     closeStage3.setOnMouseClicked(es -> {
                                         if (quizController.isCheckRs()) {
@@ -546,7 +574,7 @@ public class GameController extends Application {
                                         }
                                         initializeHearts(remainingLives);
                                         quizStage.close();
-
+                                        mediaPlayer.play();
                                     });
                                     closeStage4.setOnMouseClicked(es -> {
                                         if (quizController.isCheckRs()) {
@@ -569,12 +597,13 @@ public class GameController extends Application {
                                         }
                                         initializeHearts(remainingLives);
                                         quizStage.close();
-
+                                        mediaPlayer.play();
                                     });
                                 } catch (IOException et) {
                                     et.printStackTrace();
                                 }
                             }
+
                 }
             }
         });
@@ -632,6 +661,7 @@ public class GameController extends Application {
         scene.setFill(Color.LIGHTBLUE);
         start1();
 
+        primaryStage.setOnHiding(event -> stopBackgroundMusic());
         primaryStage.setScene(scene);
         primaryStage.setHeight(H);
         primaryStage.setWidth(W);
