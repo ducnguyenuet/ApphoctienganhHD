@@ -6,6 +6,8 @@ import javafx.fxml.Initializable;
 
 import java.io.File;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -38,6 +40,8 @@ public class ImageTranslatorController implements Initializable {
     private ImageView imageView;
     private Dragboard db;
     private Image image;
+    private List<String> imageUrls = new ArrayList<>();
+    private boolean hasImage = false;
 
     private APIWindowController apiWindowController = new APIWindowController();
     private ObservableList<String> languageList = apiWindowController.getLanguageList();
@@ -67,7 +71,12 @@ public class ImageTranslatorController implements Initializable {
         boolean success = false;
         if (db.hasFiles()) {
             success = true;
-            imageContainer.getChildren().clear();
+            if (hasImage) {
+                // Nếu đã có ảnh, thay thế ảnh cũ bằng ảnh mới
+                imageContainer.getChildren().clear();
+                imageUrls.clear();
+            }
+            //imageUrls.clear(); // Xóa các URL ảnh trước đó
             for (File file : db.getFiles()) {
                 String filePath = file.getAbsolutePath();
                 image = new Image("file:" + filePath);
@@ -77,7 +86,9 @@ public class ImageTranslatorController implements Initializable {
                 imageContainer.getChildren().add(imageView);
                 // Thực hiện các thao tác dịch ảnh và hiển thị kết quả ở resultTextField ở đây
                 imageURL = ImageTranslator.uploadImageToImgur(filePath);
+                imageUrls.add(imageURL);
             }
+            hasImage = true;
         }
         event.setDropCompleted(success);
         event.consume();
