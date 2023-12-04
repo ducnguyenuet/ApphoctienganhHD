@@ -18,7 +18,7 @@
    <left>
       <VBox prefHeight="592.0" prefWidth="66.0" style="-fx-background-color: #043952; -fx-border-width: 3; -fx-border-color: #1C4B74;" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onMouseClicked="#md" prefHeight="75.0" prefWidth="154.0" styleClass="buttonMenu" stylesheets="@../../../cssStyle/main.css" textFill="#eeeaea">
+            <Button mnemonicParsing="false" onMouseClicked="#md" prefHeight="75.0" prefWidth="86.0" styleClass="buttonMenu" stylesheets="@../../../cssStyle/main.css" textFill="#eeeaea">
                <graphic>
                   <ImageView fitHeight="54.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -26,17 +26,17 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button mnemonicParsing="false" onMouseClicked="#wb" prefHeight="74.0" prefWidth="108.0" styleClass="buttonMenu" stylesheets="@../../../cssStyle/main.css" textFill="#ebeaea">
+            <Button mnemonicParsing="false" onMouseClicked="#wb" prefHeight="74.0" prefWidth="86.0" styleClass="buttonMenu" stylesheets="@../../../cssStyle/main.css" textFill="#ebeaea">
                <graphic>
-                  <ImageView fitHeight="50.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="55.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../image/website.png" />
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button mnemonicParsing="false" onMouseClicked="#game" prefHeight="67.0" prefWidth="154.0" styleClass="buttonMenu" stylesheets="@../../../cssStyle/main.css" textFill="#f5f2f2">
+            <Button mnemonicParsing="false" onMouseClicked="#game" prefHeight="67.0" prefWidth="86.0" styleClass="buttonMenu" stylesheets="@../../../cssStyle/main.css" textFill="#f5f2f2">
                <graphic>
-                  <ImageView fitHeight="50.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../image/game-controller.png" />
                      </image>
