@@ -39,6 +39,7 @@ public class QuizController {
 
     public void setQuiz() {
         df.setText(keyWord.getDefinition());
+        df.setWrapText(true);
     }
 
     public void summit(ActionEvent event) {

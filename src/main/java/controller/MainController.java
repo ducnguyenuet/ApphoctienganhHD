@@ -335,4 +335,8 @@ public class MainController implements Initializable {
     public void toHangman(ActionEvent event) {
         loadScene("/com/example/dictionaryy/hangman.fxml");
     }
+
+    public void toImageTransAPI(ActionEvent e) {
+        loadScene("/com/example/dictionaryy/image.fxml");
+    }
 }

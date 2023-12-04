@@ -27,6 +27,7 @@ public class HangmanController {
     private String keyText ="";
     private String enter= "";
 
+
     public WordOfDB getKeyWord() {
         return keyWord;
     }
@@ -67,6 +68,7 @@ public class HangmanController {
 
     public void getHint(ActionEvent event) {
         hintText.setText(keyWord.getDefinition());
+        hintText.setWrapText(true);
     }
 
 

@@ -45,6 +45,7 @@ public class Quiz2Controller {
     public void setQuiz() {
         String hideEx = keyWord.getExample().replace(keyWord.getWord_target(), "......");
         exp.setText(hideEx);
+        exp.setWrapText(true);
         Map<Integer, Button> myMap = new HashMap<>();
         myMap.put(0, ans1);
         myMap.put(1, ans2);

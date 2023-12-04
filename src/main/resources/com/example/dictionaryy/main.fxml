@@ -59,11 +59,20 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button mnemonicParsing="false" onAction="#toHangman" prefHeight="67.0" prefWidth="86.0" style="-fx-background-color: transparent;">
+            <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#toHangman" prefHeight="67.0" prefWidth="86.0" styleClass="buttonMenu" stylesheets="@../../../cssStyle/main.css">
                <graphic>
                   <ImageView fitHeight="52.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../image/hangman-game.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#toImageTransAPI" prefHeight="67.0" prefWidth="86.0" styleClass="buttonMenu" stylesheets="@../../../cssStyle/main.css">
+               <graphic>
+                  <ImageView fitHeight="46.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../image/imageTrans.jpg" />
                      </image>
                   </ImageView>
                </graphic>

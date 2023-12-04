@@ -22,13 +22,14 @@ public class APIWindowController implements Initializable {
     private String langFrom = "en";
     private String langTo = "vi";
     private String text;
-    private String lang = "en";
+    private String langSound1;
+    private String langSound2;
 
     @FXML
-    private ComboBox<String> comboBox1;
+    private ComboBox<String> comboBox1 = new ComboBox<>();
 
     @FXML
-    private ComboBox<String> comboBox2;
+    private ComboBox<String> comboBox2 = new ComboBox<>();
 
     @FXML
     private TextArea textField1;
@@ -43,10 +44,26 @@ public class APIWindowController implements Initializable {
     private TextField searchTextField;
 
     private ObservableList<String> languageList;
-    private Map<String, String> languageMap;
-    private List<String> languageOrder;
+    private Map<String, String> languageMap = new HashMap<>();
+    private List<String> languageOrder = new ArrayList<>();
 
     private boolean isSoundPlaying = false;
+
+    public APIWindowController() {
+        initializeData(); // Gọi phương thức để cập nhật danh sách và bản đồ ngay khi khởi tạo
+        comboBox1.setItems(languageList);
+    }
+
+    private void initializeData() {
+        languageList = FXCollections.observableArrayList();
+        languageMap = new HashMap<>();
+        languageOrder = new ArrayList<>();
+
+        populateLanguageMap();
+
+        // Thêm tất cả key từ languageMap vào languageList theo thứ tự từ danh sách languageOrder
+        languageList.addAll(languageOrder);
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -115,18 +132,39 @@ public class APIWindowController implements Initializable {
     }
 
     @FXML
-    public void soundClickedOn1 () throws IOException {
-        lang = languageMap.get(comboBox1.getValue());
+    public void soundClickedOn1() throws IOException {
+        if (comboBox1.getValue() == null) {
+            langSound1 = "en"; // Đặt mặc định là "en" khi không có ngôn ngữ được chọn
+        } else {
+            langSound1 = languageMap.get(comboBox1.getValue());
+        }
         text = textField1.getText();
         translatorFromAPI translator = new translatorFromAPI();
-        translator.playTextToSpeech(lang,text);
+        translator.playTextToSpeech(langSound1, text);
     }
 
     @FXML
-    public void soundClickedOn2 () throws IOException {
-        lang = languageMap.get(comboBox2.getValue());
+    public void soundClickedOn2() throws IOException {
+        if (comboBox2.getValue() == null) {
+            langSound2 = "vi"; // Đặt mặc định là "vi" khi không có ngôn ngữ được chọn
+        } else {
+            langSound2 = languageMap.get(comboBox2.getValue());
+        }
         text = textField2.getText();
         translatorFromAPI translator = new translatorFromAPI();
-        translator.playTextToSpeech(lang,text);
+        translator.playTextToSpeech(langSound2, text);
     }
+
+    public ObservableList<String> getLanguageList() {
+        return languageList;
+    }
+
+    public Map<String, String> getLanguageMap() {
+        return languageMap;
+    }
+
+    public ComboBox<String> getComboBox1() {
+        return comboBox1;
+    }
+
 }
