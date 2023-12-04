@@ -34,11 +34,11 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button mnemonicParsing="false" onMouseClicked="#game" prefHeight="67.0" prefWidth="86.0" styleClass="buttonMenu" stylesheets="@../../../cssStyle/main.css" textFill="#f5f2f2">
+            <Button mnemonicParsing="false" onAction="#toImageTransAPI" prefHeight="67.0" prefWidth="86.0" styleClass="buttonMenu" stylesheets="@../../../cssStyle/main.css" textFill="#f5f2f2">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../image/game-controller.png" />
+                        <Image url="@../../../image/imageTrans.jpg" />
                      </image>
                   </ImageView>
                </graphic></Button>
@@ -68,11 +68,11 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#toImageTransAPI" prefHeight="67.0" prefWidth="86.0" styleClass="buttonMenu" stylesheets="@../../../cssStyle/main.css">
+            <Button mnemonicParsing="false" onMouseClicked="#game" prefHeight="67.0" prefWidth="86.0" styleClass="buttonMenu" stylesheets="@../../../cssStyle/main.css" textFill="#f5f2f2">
                <graphic>
-                  <ImageView fitHeight="46.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../image/imageTrans.jpg" />
+                        <Image url="@../../../image/game-controller.png" />
                      </image>
                   </ImageView>
                </graphic>
