@@ -412,7 +412,8 @@ public class GameController extends Application {
                         Random rd = new Random();
                         int x = rd.nextInt(k);
 
-                        while (List.get(x).getAudio().isEmpty() && List.get(x).getDefinition().isEmpty()&& List.get(x).getDefinition().equals("null")&&List.get(x).getDefinition().length()<6) {
+                        while (List.get(x).getAudio().isEmpty() && List.get(x).getDefinition().isEmpty()&& List.get(x).getDefinition().equals("null")&&List.get(x).getDefinition().length()<6
+                                && List.get(x).getExample().isEmpty()&& List.get(x).getExample().equals("null")&&List.get(x).getExample().length()<6) {
                             x = rd.nextInt(k);
                         }
 
