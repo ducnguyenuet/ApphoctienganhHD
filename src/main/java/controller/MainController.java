@@ -73,11 +73,13 @@ public class MainController implements Initializable {
 
     @FXML
     public void md(MouseEvent mouseEvent) {
+        HangmanController.mediaPlayer.stop();
         defaut.setCenter(myDictPane);
     }
 
     @FXML
     public void wb(MouseEvent mouseEvent) {
+        HangmanController.mediaPlayer.stop();
         defaut.setCenter(webView);
     }
     private void loadScene(String s) {
@@ -319,15 +321,18 @@ public class MainController implements Initializable {
 
     @FXML
     public void game(MouseEvent mouseEvent) throws IOException {
+        HangmanController.mediaPlayer.stop();
         loadScene("/com/example/dictionaryy/game.fxml");
     }
 
     @FXML
     public void api(MouseEvent mouseEvent) throws IOException {
+        HangmanController.mediaPlayer.stop();
         loadScene("/com/example/dictionaryy/api_window.fxml");
     }
 
     public void tomess(MouseEvent mouseEvent) {
+        HangmanController.mediaPlayer.stop();
         loadScene("/com/example/dictionaryy/WordChain.fxml");
     }
 
@@ -337,6 +342,7 @@ public class MainController implements Initializable {
     }
 
     public void toImageTransAPI(ActionEvent e) {
+        HangmanController.mediaPlayer.stop();
         loadScene("/com/example/dictionaryy/image.fxml");
     }
 }

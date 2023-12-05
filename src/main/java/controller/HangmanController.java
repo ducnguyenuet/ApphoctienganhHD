@@ -33,12 +33,12 @@ public class HangmanController {
     Media mp2 = new Media(new File("src/main/resources/sound/incorrectHang.mp3").toURI().toString());
     Media mp3 = new Media(new File("src/main/resources/sound/winHang.mp3").toURI().toString());
     Media mp4 = new Media(new File("src/main/resources/sound/loseHang.mp3").toURI().toString());
-    Media themeSongH = new Media(new File("src/main/resources/sound/themeSongHang.mp3").toURI().toString());
+    static Media themeSongH = new Media(new File("src/main/resources/sound/themeSongHang.mp3").toURI().toString());
     MediaPlayer mediaPlayer1 = new MediaPlayer(mp1);
     MediaPlayer mediaPlayer2 = new MediaPlayer(mp2);
     MediaPlayer mediaPlayer3 = new MediaPlayer(mp3);
     MediaPlayer mediaPlayer4 = new MediaPlayer(mp4);
-    MediaPlayer mediaPlayer = new MediaPlayer(themeSongH);
+    static MediaPlayer mediaPlayer = new MediaPlayer(themeSongH);
 
     public WordOfDB getKeyWord() {
         return keyWord;
@@ -49,9 +49,10 @@ public class HangmanController {
     }
 
     public void playBackgroundMusic() {
-        //mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         mediaPlayer.play();
     }
+
 
     public void setKey()
     {
