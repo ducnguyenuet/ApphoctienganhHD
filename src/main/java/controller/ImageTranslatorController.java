@@ -50,6 +50,7 @@ public class ImageTranslatorController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // Thực hiện việc khởi tạo các thành phần trong giao diện người dùng
+        languageList.removeAll("Chinese", "Urdu");
         comboBox.setItems(languageList);
         resultTextField.setText("Kết quả dịch được hiển thị ở đây: \n");
     }
